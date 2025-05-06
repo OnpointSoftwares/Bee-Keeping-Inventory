@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Handle API requests
+RewriteRule ^api/([^/]+)/?$ api/handler.php [QSA,L]
+
+# Allow direct access to files
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect all other requests to index.php
+RewriteRule ^ index.php [QSA,L]
