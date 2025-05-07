@@ -2,22 +2,23 @@
 require_once __DIR__ . '/../../model/equipment/equipment.php';
 
 class EquipmentController {
-    private $equipmentModel;
+    public $equipmentModel;
+    public $db;
     
     public function __construct($db) {
         $this->equipmentModel = new Equipment($db);
+        $this->db = $db;
     }
     
-    public function handleRequest() {
-        $action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
-        
+    public function handleRequest($input) {
+        $action = isset($input['action']) ? $input['action'] : '';
         switch($action) {
             case 'add':
-                return $this->addEquipment();
+                return $this->addEquipment($input);
             case 'update':
-                return $this->updateEquipment();
+                return $this->updateEquipment($input);
             case 'delete':
-                return $this->deleteEquipment();
+                return $this->deleteEquipment($input);
             case 'getAll':
                 return $this->getAllEquipment();
             case 'getByType':
@@ -29,15 +30,15 @@ class EquipmentController {
         }
     }
     
-    private function addEquipment() {
+    public function addEquipment($input) {
         try {
             $data = [
-                'name' => $_POST['name'] ?? '',
-                'type' => $_POST['type'] ?? '',
-                'quantity' => $_POST['quantity'] ?? 0,
-                'condition_status' => $_POST['condition'] ?? 'New',
-                'purchaseDate' => $_POST['purchaseDate'] ?? date('Y-m-d'),
-                'notes' => $_POST['notes'] ?? ''
+                'name' => $input['name'] ?? '',
+                'type' => $input['type'] ?? '',
+                'quantity' => $input['quantity'] ?? 0,
+                'condition_status' => $input['condition'] ?? 'New',
+                'purchaseDate' => $input['purchaseDate'] ?? date('Y-m-d'),
+                'notes' => $input['notes'] ?? ''
             ];
             
             return $this->equipmentModel->addEquipment($data);
@@ -46,15 +47,15 @@ class EquipmentController {
         }
     }
     
-    private function updateEquipment() {
+    public function updateEquipment($input) {
         try {
             $data = [
-                'equipmentID' => $_POST['equipmentID'] ?? 0,
-                'name' => $_POST['name'] ?? '',
-                'type' => $_POST['type'] ?? '',
-                'quantity' => $_POST['quantity'] ?? 0,
-                'condition_status' => $_POST['condition'] ?? 'Used',
-                'notes' => $_POST['notes'] ?? ''
+                'equipmentID' => $input['equipmentID'] ?? 0,
+                'name' => $input['name'] ?? '',
+                'type' => $input['type'] ?? '',
+                'quantity' => $input['quantity'] ?? 0,
+                'condition_status' => $input['condition'] ?? 'Used',
+                'notes' => $input['notes'] ?? ''
             ];
             
             return $this->equipmentModel->updateEquipment($data);
@@ -63,9 +64,9 @@ class EquipmentController {
         }
     }
     
-    private function deleteEquipment() {
+    public function deleteEquipment($input) {
         try {
-            $equipmentID = $_POST['equipmentID'] ?? 0;
+            $equipmentID = $input['equipmentID'] ?? 0;
             return $this->equipmentModel->deleteEquipment($equipmentID);
         } catch (Exception $e) {
             return ['success' => false, 'error' => $e->getMessage()];
@@ -74,13 +75,15 @@ class EquipmentController {
     
     public function getAllEquipment() {
         try {
-            return $this->equipmentModel->getAllEquipment();
+            $equipment = $this->equipmentModel->getAllEquipment();
+            error_log('Fetched equipment: ' . print_r($equipment, true)); // Log the fetched equipment
+            return ['success' => true, 'data' => $equipment];
         } catch (Exception $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
     }
     
-    private function getByType() {
+    public function getByType() {
         try {
             $type = $_GET['type'] ?? '';
             return $this->equipmentModel->getByType($type);

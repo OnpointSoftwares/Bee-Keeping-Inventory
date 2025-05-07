@@ -110,18 +110,41 @@ try {
             break;
             
         case 'production':
-            if (!isset($_SESSION['loggedIn'])) {
-                http_response_code(401);
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Authentication required'
-                ]);
-                exit();
-            }
-            $controller = new ProductionController($db);
-            $result = $controller->handleRequest($input);
-            break;
-            
+    /*if (!isset($_SESSION['loggedIn'])) {
+        http_response_code(401);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Authentication required'
+        ]);
+        exit();
+    }*/
+    $controller = new ProductionController($db);
+    if (isset($input['action'])) {
+        switch ($input['action']) {
+            case 'add':
+
+                $result = $controller->addProduction($input);
+                break;
+            case 'getReport':
+                $result = $controller->getReport($input); // Pass $input to the method
+                break;
+            case 'getHiveProduction':
+                $result = $controller->getHiveProduction($input['hiveID']);
+                break;
+            case 'getTotalProduction':
+                $result = $controller->getTotalProduction($input['startDate'], $input['endDate']);
+                break;
+            case 'getProductionByType':
+                $result = $controller->getProductionByType($input['startDate'], $input['endDate']);
+                break;
+            case 'getAllProduction': // Ensure this case is present
+                $result = $controller->getAllProduction();
+                break;
+            default:
+                throw new Exception('Invalid production action: ' . ($input['action'] ?? ''));
+        }
+    }
+    break;
         case 'equipment':
             if (!isset($_SESSION['loggedIn'])) {
                 http_response_code(401);

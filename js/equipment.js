@@ -1,4 +1,5 @@
 // Equipment Management
+
 document.addEventListener('DOMContentLoaded', function() {
     // Show equipment section when nav link is clicked
     document.querySelector('a[href="#equipment"]').addEventListener('click', function() {
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Load equipment data
 async function loadEquipment() {
     try {
-        const data = await api.get('equipment', { action: 'getAll' });
+        const data = await window.api.get('equipment', { action: 'getAll' });
         console.log('Equipment API Response:', data); // Log the response
         if (data.success) {
             displayEquipment(data.data); // Pass the actual array of equipment
@@ -36,7 +37,7 @@ async function loadEquipment() {
 // Load and display inventory report
 async function loadInventoryReport() {
     try {
-        const data = await api.get('equipment', { action: 'getInventoryReport' });
+        const data = await window.api.get('equipment', { action: 'getInventoryReport' });
         if (data.success) {
             displayInventoryReport(data.report);
             updateInventoryChart(data.report);
@@ -48,50 +49,6 @@ async function loadInventoryReport() {
         console.error('Error:', error);
         alert('Failed to load inventory report: ' + error.message);
     }
-}
-
-// Display equipment in table
-function displayEquipment(data) {
-    const container = document.getElementById('equipmentContainer');
-    if (!container) return;
-
-    let html = `
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Quantity</th>
-                    <th>Condition</th>
-                    <th>Purchase Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    data.forEach(item => {
-        html += `
-            <tr>
-                <td>${item.name}</td>
-                <td>${item.type}</td>
-                <td>${item.quantity}</td>
-                <td>${item.condition}</td>
-                <td>${item.purchaseDate}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary me-1" onclick="editEquipment(${item.equipmentID})">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteEquipment(${item.equipmentID})">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
-    });
-
-    html += '</tbody></table>';
-    container.innerHTML = html;
 }
 
 // Display equipment in table
@@ -213,17 +170,12 @@ function initializeEquipmentTypeFilter() {
     filterSelect.addEventListener('change', function() {
         const type = this.value;
         if (type) {
-            fetch('{API_BASE}/equipment/getByType', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `controller=equipment&action=getByType&type=${encodeURIComponent(type)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    displayEquipment(data);
+            window.api.post('equipment', { controller: 'equipment', action: 'getByType', type })
+            .then(response => {
+                if (response.success) {
+                    displayEquipment(response.data);
                 } else {
-                    showToast('error', 'Error filtering equipment: ' + data.error);
+                    showToast('error', 'Error filtering equipment: ' + response.error);
                 }
             })
             .catch(error => {
@@ -251,8 +203,7 @@ function updateTypeFilter(data) {
     filterSelect.innerHTML = options;
 }
 
-// Handle add equipment form submission
-function handleAddEquipment(e) {
+async function handleAddEquipment(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
@@ -266,29 +217,22 @@ function handleAddEquipment(e) {
         notes: formData.get('notes')
     };
 
-    fetch('{API_BASE}/equipment/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+    try {
+        const response = await window.api.post('equipment', data); // Use await here
+        if (response.success) {
             showToast('success', 'Equipment added successfully');
             loadEquipment();
             loadInventoryReport();
             $('#addEquipmentModal').modal('hide');
             e.target.reset();
         } else {
-            showToast('error', 'Error adding equipment: ' + data.error);
+            showToast('error', 'Error adding equipment: ' + response.error);
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error:', error);
         showToast('error', 'Failed to add equipment');
-    });
+    }
 }
-
 // Handle update equipment form submission
 function handleUpdateEquipment(e) {
     e.preventDefault();
@@ -304,20 +248,15 @@ function handleUpdateEquipment(e) {
         notes: formData.get('notes')
     };
 
-    fetch('{API_BASE}/equipment/update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+    window.api.post('equipment', data)
+    .then(response => {
+        if (response.success) {
             showToast('success', 'Equipment updated successfully');
             loadEquipment();
             loadInventoryReport();
             $('#updateEquipmentModal').modal('hide');
         } else {
-            showToast('error', 'Error updating equipment: ' + data.error);
+            showToast('error', 'Error updating equipment: ' + response.error);
         }
     })
     .catch(error => {
@@ -329,19 +268,14 @@ function handleUpdateEquipment(e) {
 // Delete equipment
 function deleteEquipment(equipmentID) {
     if (confirm('Are you sure you want to delete this equipment?')) {
-        fetch('{API_BASE}/equipment/delete', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `controller=equipment&action=delete&equipmentID=${equipmentID}`
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
+        window.api.post('equipment', { controller: 'equipment', action: 'delete', equipmentID })
+        .then(response => {
+            if (response.success) {
                 showToast('success', 'Equipment deleted successfully');
                 loadEquipment();
                 loadInventoryReport();
             } else {
-                showToast('error', 'Error deleting equipment: ' + data.error);
+                showToast('error', 'Error deleting equipment: ' + response.error);
             }
         })
         .catch(error => {

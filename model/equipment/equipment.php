@@ -9,17 +9,16 @@ class Equipment {
     }
     
     public function addEquipment($data) {
+        error_log('Equipment data: ' . print_r($data, true));
         $query = "INSERT INTO equipment (name, type, quantity, condition_status, purchaseDate, notes, status) 
                  VALUES (:name, :type, :quantity, :condition, :purchaseDate, :notes, 'Active')";
-        
         try {
-            $name = $data['name'];
-            $type = $data['type'];
-            $quantity = $data['quantity'];
-            $condition = $data['condition_status'];
-            $purchaseDate = $data['purchaseDate'];
-            $notes = $data['notes'];
-            
+            $name = $data['name'] ?? '';
+            $type = $data['type'] ?? '';
+            $quantity = $data['quantity'] ?? 0;
+            $condition = $data['condition_status'] ?? 'New';
+            $purchaseDate = $data['purchaseDate'] ?? date('Y-m-d');
+            $notes = $data['notes'] ?? '';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':type', $type);
@@ -27,7 +26,6 @@ class Equipment {
             $stmt->bindParam(':condition', $condition);
             $stmt->bindParam(':purchaseDate', $purchaseDate);
             $stmt->bindParam(':notes', $notes);
-            
             if($stmt->execute()) {
                 return ['success' => true, 'message' => 'Equipment added successfully'];
             }
@@ -72,14 +70,10 @@ class Equipment {
     }
     
     public function getAllEquipment() {
-        $query = "SELECT * FROM equipment WHERE status = 'Active' ORDER BY type, name";
-        try {
-            $stmt = $this->conn->prepare($query);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
-        }
+        $query = "SELECT * FROM equipment WHERE status = 'Active'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function getEquipmentByType($type) {

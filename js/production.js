@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('a[href="#production"]').addEventListener('click', function() {
         loadProduction();
         loadProductionReport();
+        loadProductionData();
     });
 
     // Add production form submission
@@ -170,21 +171,65 @@ function updateProductionChart(report) {
     });
 }
 
+// Load production data for charts
+async function loadProductionData() {
+    try {
+        const response = await fetch('api/production?action=getAllProduction');
+        const data = await response.json();
+
+        if (data.success) {
+            displayProduction(data.data); // Display the production data in the UI
+            updateHiveFilter(data.data); // Update the hive filter with the production data
+            updateProductionChart(data.data); // Update the production chart with the production data
+        } else {
+            console.error('Error loading production data:', data.error);
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+// Update charts with production data
+function updateCharts(productionData) {
+    const ctx = document.getElementById('productionChart').getContext('2d');
+    const labels = productionData.map(item => item.type);
+    const quantities = productionData.map(item => item.quantity);
+
+    const productionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Production Quantity',
+                data: quantities,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
 // Handle add production form submission
 function handleAddProduction(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
-        controller: 'production',
-        action: 'add',
         hiveID: formData.get('hiveID'),
+        productionType: formData.get('productionType'),
         quantity: formData.get('quantity'),
-        quality: formData.get('quality'),
-        harvestDate: formData.get('harvestDate'),
+        unit: formData.get('unit'),
+        date: formData.get('date'),
         notes: formData.get('notes')
     };
 
-    fetch('api/', {
+    fetch('/inventory-management-system/api/production/?action=add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(data)
@@ -212,16 +257,15 @@ function handleUpdateProduction(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
-        controller: 'production',
-        action: 'update',
-        productionID: formData.get('productionID'),
         hiveID: formData.get('hiveID'),
+        productionType: formData.get('productionType'),
         quantity: formData.get('quantity'),
-        quality: formData.get('quality'),
+        unit: formData.get('unit'),
+        date: formData.get('date'),
         notes: formData.get('notes')
     };
 
-    fetch('api/handler.php', {
+    fetch('/inventory-management-system/api/production/?action=update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(data)
@@ -246,7 +290,7 @@ function handleUpdateProduction(e) {
 // Delete production
 function deleteProduction(productionID) {
     if (confirm('Are you sure you want to delete this production record?')) {
-        fetch('api/handler.php', {
+        fetch('/inventory-management-system/api/production', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `controller=production&action=delete&productionID=${productionID}`
@@ -309,3 +353,18 @@ function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
+// Update hive filter
+function updateHiveFilter(productionData) {
+    const hiveIDs = productionData.map(item => item.hiveID);
+    const uniqueHiveIDs = [...new Set(hiveIDs)];
+
+    const hiveFilter = document.getElementById('hiveFilter');
+    hiveFilter.innerHTML = '';
+
+    uniqueHiveIDs.forEach(hiveID => {
+        const option = document.createElement('option');
+        option.value = hiveID;
+        option.textContent = `Hive ${hiveID}`;
+        hiveFilter.appendChild(option);
+    });
+}

@@ -3,9 +3,9 @@ require_once(__DIR__ . '/../../model/hive/hive.php');
 require_once(__DIR__ . '/../../model/hive/health.php');
 
 class HiveController {
-    private $hiveModel;
-    private $healthModel;
-    private $db;
+    public $hiveModel;
+    public $healthModel;
+    public $db;
 
     public function __construct($db) {
         $this->db = $db;

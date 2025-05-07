@@ -322,3 +322,1588 @@ Stack trace:
 [06-May-2025 11:07:28 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
 [06-May-2025 11:07:53 Europe/Berlin] Equipment request: {"action":"getAll"}
 [06-May-2025 11:07:53 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 03:53:18 Europe/Berlin] Incoming request: {"controller":"auth","action":"login","username":"admin","password":"123456"}
+[07-May-2025 04:15:43 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 04:15:43 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 04:18:50 Europe/Berlin] Equipment request: {"action":"getall"}
+[07-May-2025 04:19:42 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 04:20:40 Europe/Berlin] Equipment request: {"action":"add"}
+[07-May-2025 04:20:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to private method EquipmentController::addEquipment() from global scope in /opt/lampp/htdocs/inventory-management-system/api/handler.php:149
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 149
+[07-May-2025 04:21:02 Europe/Berlin] Equipment request: {"action":"add"}
+[07-May-2025 04:24:19 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 04:24:19 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:13:19 Europe/Berlin] Incoming request: {"controller":"auth","action":"login","username":"admin","password":"123456"}
+[07-May-2025 07:18:16 Europe/Berlin] Incoming request: {"hiveNumber":"34","location":"Kabarak","dateEstablished":"2025-05-07","queenAge":"3","notes":"good","action":"add"}
+[07-May-2025 07:18:52 Europe/Berlin] Incoming request: {"hiveID":"3","checkDate":"2025-05-07","colonyStrength":"5","queenPresent":"1","diseaseSymptoms":"Good","pestProblems":"Good","notes":"good","action":"addHealth"}
+[07-May-2025 07:20:29 Europe/Berlin] Incoming request: {"hiveID":"3","checkDate":"2025-05-07","colonyStrength":"5","queenPresent":"1","diseaseSymptoms":"Good","pestProblems":"Good","notes":"good","action":"addHealth"}
+[07-May-2025 07:26:52 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getAllHives() on null in /opt/lampp/htdocs/inventory-management-system/controllers/hive/HiveController.php:29
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(109): HiveController->handleRequest(Array)
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/hive/HiveController.php on line 29
+[07-May-2025 07:27:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getAllHives() on null in /opt/lampp/htdocs/inventory-management-system/controllers/hive/HiveController.php:29
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(109): HiveController->handleRequest(Array)
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/hive/HiveController.php on line 29
+[07-May-2025 07:28:42 Europe/Berlin] Incoming request: {"hiveNumber":"54","location":"Kericho","dateEstablished":"2025-05-07","queenAge":"3","notes":"Good","action":"add"}
+[07-May-2025 07:29:52 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:47
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 47
+[07-May-2025 07:29:52 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:47
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 47
+[07-May-2025 07:32:11 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:32:11 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:33:19 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-06","notes":"Good"}
+[07-May-2025 07:33:19 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-06","notes":"Good"}
+[07-May-2025 07:33:49 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-06","notes":"Good"}
+[07-May-2025 07:33:49 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-06","notes":"Good"}
+[07-May-2025 07:35:51 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:35:51 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:35:51 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:35:51 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:42:50 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:42:50 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:43:21 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"good"}
+[07-May-2025 07:43:21 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"good"}
+[07-May-2025 07:43:22 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:43:22 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:44:49 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:44:49 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:45:14 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-04-30","notes":"good"}
+[07-May-2025 07:45:14 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-04-30","notes":"good"}
+[07-May-2025 07:45:15 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:45:15 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:49:52 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:49:52 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:50:19 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","name":"boots","type":"Protective Gear","quantity":"23","condition":"Good","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:50:19 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","name":"boots","type":"Protective Gear","quantity":"23","condition":"Good","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:50:19 Europe/Berlin] Equipment data: Array
+(
+    [name] => 
+    [type] => 
+    [quantity] => 0
+    [condition_status] => New
+    [purchaseDate] => 2025-05-07
+    [notes] => 
+)
+
+[07-May-2025 07:50:19 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:50:19 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:58:33 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:58:33 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:58:46 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 07:58:46 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:59:07 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:59:07 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 07:59:07 Europe/Berlin] Equipment data: Array
+(
+    [name] => 
+    [type] => 
+    [quantity] => 0
+    [condition_status] => New
+    [purchaseDate] => 2025-05-07
+    [notes] => 
+)
+
+[07-May-2025 07:59:07 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 07:59:07 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:04:55 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 08:04:55 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"Good"}
+[07-May-2025 08:04:55 Europe/Berlin] Equipment data: Array
+(
+    [name] => 
+    [type] => 
+    [quantity] => 0
+    [condition_status] => New
+    [purchaseDate] => 2025-05-07
+    [notes] => 
+)
+
+[07-May-2025 08:04:55 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:04:55 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:08:31 Europe/Berlin] Incoming request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"good"}
+[07-May-2025 08:08:31 Europe/Berlin] Equipment request: {"controller":"equipment","action":"add","name":"Boots","type":"Protective Gear","quantity":"23","condition":"New","purchaseDate":"2025-05-07","notes":"good"}
+[07-May-2025 08:08:31 Europe/Berlin] Equipment data: Array
+(
+    [name] => Boots
+    [type] => Protective Gear
+    [quantity] => 23
+    [condition_status] => New
+    [purchaseDate] => 2025-05-07
+    [notes] => good
+)
+
+[07-May-2025 08:08:31 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:08:31 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:09:11 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:09:11 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:10:56 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:10:56 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:10:56 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:11:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:47
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 47
+[07-May-2025 08:11:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:47
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 47
+[07-May-2025 08:13:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:13:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:13:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:13:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:13:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:13:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:32:24 Europe/Berlin] Incoming request: {"controller":"auth","action":"login","username":"admin","password":"123456"}
+[07-May-2025 08:32:42 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:32:42 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:32:42 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:32:54 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:32:54 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:32:54 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:32:54 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:32:54 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:32:58 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:32:58 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:32:58 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:32:58 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:32:58 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:33:03 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:33:03 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":15}
+[07-May-2025 08:33:03 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:33:03 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:33:03 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:33:06 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":14}
+[07-May-2025 08:33:06 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":14}
+[07-May-2025 08:33:06 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:33:06 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:33:06 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:33:09 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":5}
+[07-May-2025 08:33:09 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":5}
+[07-May-2025 08:33:10 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:33:10 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:33:10 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:33:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:33:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:55
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 55
+[07-May-2025 08:34:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:58
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 58
+[07-May-2025 08:34:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:58
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 58
+[07-May-2025 08:35:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:58
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 58
+[07-May-2025 08:35:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getTotalProduction() on null in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:58
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php(23): ProductionController->getReport(Array)
+#1 /opt/lampp/htdocs/inventory-management-system/api/handler.php(122): ProductionController->handleRequest(Array)
+#2 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 58
+[07-May-2025 08:38:21 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 08:38:21 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 08:38:21 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 08:47:30 Europe/Berlin] Incoming request: {
+    "action": "add",
+    "hiveID": "1",
+    "productionType": "Honey",
+    "quantity": 100,
+    "unit": "kg",
+    "date": "2025-05-07"
+}
+[07-May-2025 08:56:41 Europe/Berlin] PHP Warning:  Undefined variable $controller in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 124
+[07-May-2025 08:56:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function addProduction() on null in /opt/lampp/htdocs/inventory-management-system/api/handler.php:124
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 124
+[07-May-2025 08:57:47 Europe/Berlin] PHP Warning:  Undefined variable $controller in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 124
+[07-May-2025 08:57:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function addProduction() on null in /opt/lampp/htdocs/inventory-management-system/api/handler.php:124
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 124
+[07-May-2025 08:59:08 Europe/Berlin] Server error: Invalid production action: getAll
+[07-May-2025 09:03:40 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProductionController::getReport(), 0 passed in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 128 and exactly 1 expected in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:63
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(128): ProductionController->getReport()
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 63
+[07-May-2025 09:03:40 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProductionController::getReport(), 0 passed in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 128 and exactly 1 expected in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:63
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(128): ProductionController->getReport()
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 63
+[07-May-2025 09:04:14 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProductionController::getReport(), 0 passed in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 128 and exactly 1 expected in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:63
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(128): ProductionController->getReport()
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 63
+[07-May-2025 09:04:14 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProductionController::getReport(), 0 passed in /opt/lampp/htdocs/inventory-management-system/api/handler.php on line 128 and exactly 1 expected in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php:63
+Stack trace:
+#0 /opt/lampp/htdocs/inventory-management-system/api/handler.php(128): ProductionController->getReport()
+#1 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 63
+[07-May-2025 09:07:21 Europe/Berlin] Server error: Invalid production action: getAllProductions
+[07-May-2025 09:07:27 Europe/Berlin] Server error: Invalid production action: getAllProductions
+[07-May-2025 09:12:56 Europe/Berlin] Incoming request: controller=production&action=add&hiveID=2&quantity=30&quality=Premium&harvestDate=2025-05-07&notes=good
+[07-May-2025 09:13:54 Europe/Berlin] Incoming request: controller=production&action=add&hiveID=2&quantity=10&quality=Premium&harvestDate=2025-05-06&notes=good
+[07-May-2025 09:14:07 Europe/Berlin] Adding production: {"action":"add"}
+[07-May-2025 09:14:07 Europe/Berlin] PHP Warning:  Undefined array key "hiveID" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 44
+[07-May-2025 09:14:07 Europe/Berlin] PHP Warning:  Undefined array key "productionType" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 45
+[07-May-2025 09:14:07 Europe/Berlin] PHP Warning:  Undefined array key "quantity" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 46
+[07-May-2025 09:14:07 Europe/Berlin] PHP Warning:  Undefined array key "unit" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 47
+[07-May-2025 09:14:07 Europe/Berlin] PHP Warning:  Undefined array key "date" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 48
+[07-May-2025 09:20:24 Europe/Berlin] Incoming request: hiveID=2&productionType=null&quantity=2000&unit=null&date=null&notes=good
+[07-May-2025 09:22:35 Europe/Berlin] Incoming request: hiveID=2&productionType=null&quantity=200&unit=null&date=null&notes=good
+[07-May-2025 09:23:06 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:24:29 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:24:29 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:30:01 Europe/Berlin] Incoming request: hiveID=2&productionType=null&quantity=30&unit=null&date=null&notes=good
+[07-May-2025 09:30:23 Europe/Berlin] Adding production: {"action":"add"}
+[07-May-2025 09:30:36 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:30:36 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:31:51 Europe/Berlin] Adding production: {"action":"add"}
+[07-May-2025 09:31:57 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:31:57 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:37:06 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:37:06 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:37:40 Europe/Berlin] Incoming request: hiveID=2&productionType=null&quantity=30&unit=null&date=null&notes=good
+[07-May-2025 09:38:05 Europe/Berlin] Adding production: {"action":"add"}
+[07-May-2025 09:38:18 Europe/Berlin] Adding production: {"action":"add"}
+[07-May-2025 09:44:22 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:44:22 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:52:08 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:52:08 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:53:27 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:53:27 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:55:56 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "require_once" in /opt/lampp/htdocs/inventory-management-system/controllers/production/ProductionController.php on line 4
+[07-May-2025 09:56:18 Europe/Berlin] Incoming request: {
+    "hiveID": "1",
+    "productionType": "Wildflower",
+    "quantity": "10.50",
+    "unit": "kg",
+    "date": "2025-05-02",
+    "notes": "First harvest"
+}
+[07-May-2025 09:56:18 Europe/Berlin] Server error: Invalid response from controller
+[07-May-2025 09:58:38 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 09:58:38 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 09:58:38 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 10:02:17 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 10:02:17 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 10:02:17 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 10:02:40 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[07-May-2025 10:02:40 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 10:02:40 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 10:02:47 Europe/Berlin] Incoming request: {"controller":"equipment","action":"delete","equipmentID":16}
+[07-May-2025 10:02:47 Europe/Berlin] Equipment request: {"controller":"equipment","action":"delete","equipmentID":16}
+[07-May-2025 10:02:47 Europe/Berlin] Equipment request: {"action":"getAll"}
+[07-May-2025 10:02:47 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[07-May-2025 10:02:47 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}

@@ -13,27 +13,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load health data
-function loadHealth() {
-    fetch('api/handler.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'controller=health&action=getAll'
-    })
-    .then(response => response.json())
-    .then(data => {
+async function loadHealth() {
+    try {
+        const data = await api.get('health', { action: 'getAll' });
+        console.log('API Response Data:', data); // Log the API response
         if (data.success) {
-            displayHealth(data);
-            updateHealthSummary(data);
+            this.displayHealth(data.data); // Pass the actual array of hives
+            this.updateHealthSummary(data.data);
         } else {
-            showToast('error', 'Error loading health records: ' + data.error);
+            showToast('Failed to load health', 'error');
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showToast('error', 'Failed to load health records');
-    });
+    } catch (error) {
+        showToast(error.message, 'error');
+    }
 }
-
 // Display health records
 function displayHealth(data) {
     const container = document.getElementById('healthContainer');
@@ -183,7 +176,24 @@ function updateHealthSummary(data) {
 }
 
 // Handle add health record
-function handleAddHealth(e) {
+async function handleAddHealth() {
+    try {
+        const data = getFormData('addHealthCheckForm');
+        data.action = 'add';
+        
+        const result = await api.post('health', data);
+        if (result.success) {
+            showToast('Health record added successfully');
+            loadHealth();
+            document.getElementById('addHiveForm').reset();
+        } else {
+            showToast('Failed to add health record', 'error');
+        }
+    } catch (error) {
+        showToast(error.message, 'error');
+    }
+}
+/*function handleAddHealth(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
@@ -218,7 +228,7 @@ function handleAddHealth(e) {
         showToast('error', 'Failed to add health record');
     });
 }
-
+*/
 // Handle update health record
 function handleUpdateHealth(e) {
     e.preventDefault();
@@ -233,19 +243,19 @@ function handleUpdateHealth(e) {
         notes: formData.get('notes')
     };
 
-    fetch('api/handler.php', {
+    fetch('api/health', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(data)
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
-            showToast('success', 'Health record updated successfully');
-            loadHealth();
-            $('#updateHealthModal').modal('hide');
+        if (result.success) {
+            showToast('Health record added successfully');
+            loadHealth(); // Update this line
+            document.getElementById('addHiveForm').reset();
         } else {
-            showToast('error', 'Error updating health record: ' + data.error);
+            showToast('Failed to add health record', 'error');
         }
     })
     .catch(error => {

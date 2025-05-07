@@ -1,12 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors",1);
 require_once(__DIR__ . '/../../model/production/honey.php');
 class ProductionController {
-    private $productionModel;
-    private $db;
+    public $productionModel;
+    public $db;
     
     public function __construct($db) {
         $this->db = $db;
-        $this->productionModel = new HoneyProduction($db); // Instantiate the HoneyProduction model
+        $this->productionModel = new HoneyProduction($db); // Initialize the production model
     }
 
     public function handleRequest($params = []) {
@@ -15,7 +17,7 @@ class ProductionController {
             
             switch($action) {
                 case 'add':
-                    return $this->productionModel->addProduction($params);
+                    return $this->addProduction($params);
                     
                 case 'getHiveProduction':
                     return $this->getHiveProduction($params['hiveID']);
@@ -26,9 +28,31 @@ class ProductionController {
                 case 'getTypeReport':
                     return $this->getTypeReport($params);
                     
+                case 'getAllProduction':
+                    return $this->getAllProduction();
+                    
                 default:
                     return ['success' => false, 'error' => 'Invalid action specified'];
             }
+        } catch (Exception $e) {
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+
+    public function addProduction($input) {
+        error_log('Adding production: ' . json_encode($input));
+        if (!isset($input['hiveID']) || !isset($input['productionType']) || !isset($input['quantity']) || !isset($input['unit']) || !isset($input['date'])) {
+            return ['success' => false, 'error' => 'Missing required fields'];
+        }
+        try {
+            $productionData = [
+                'hiveID' => $input['hiveID'],
+                'productionType' => $input['productionType'],
+                'quantity' => $input['quantity'],
+                'unit' => $input['unit'],
+                'date' => $input['date']
+            ];
+            return $this->productionModel->addProduction($productionData);
         } catch (Exception $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
@@ -86,5 +110,13 @@ class ProductionController {
             ];
         }
         return $report;
+    }
+
+    public function getAllProduction() {
+        try {
+            return $this->productionModel->getAllProduction();
+        } catch (Exception $e) {
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
     }
 }

@@ -14,7 +14,7 @@
     <!-- JavaScript Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Custom JavaScript -->
     <script src="js/utils.js"></script>
     <script src="js/hive.js"></script>
@@ -249,11 +249,26 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">
+                                <h5 class="mb-0">Production Chart</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="productionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="mb-0">Production Summary</h5>
                                 <select id="productionDateRange" class="form-control w-auto">
                                     <option value="month">Last Month</option>
                                     <option value="quarter">Last Quarter</option>
                                     <option value="year" selected>Last Year</option>
+                                </select>
+                                <select id="hiveFilter" class="form-control w-auto">
+                                    <option value="">Select Hive</option>
                                 </select>
                             </div>
                             <div class="card-body">
@@ -654,6 +669,20 @@
 
     <!-- Add this before the closing body tag -->
     <script>
+          $(document).ready(function() {
+        // Hide all sections except dashboard
+        $('.tab-pane').hide(); // Hide all tabs
+        $('#dashboard').show(); // Show only the dashboard tab
+
+        // Handle sidebar navigation
+        $('.sidebar-nav .nav-link').on('click', function() {
+            var target = $(this).attr('href');
+            $('.tab-pane').hide(); // Hide all tabs
+            $(target).show(); // Show the selected tab
+            $('.nav-link').removeClass('active'); // Remove active class from all links
+            $(this).addClass('active'); // Add active class to the clicked link
+        });
+    });
     // Sidebar Toggle
     document.querySelector('.sidebar-toggle').addEventListener('click', function() {
         document.querySelector('.sidebar').classList.toggle('show');
@@ -691,6 +720,10 @@
             }
         });
     });
+
+    // Show dashboard tab on load
+    document.getElementById('dashboard').style.display = 'block';
+    document.querySelector('.sidebar-nav .nav-link[href="#dashboard"]').classList.add('active');
 </script>
 
 </body>

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once(__DIR__ . '/../../inc/config/db.php');
 
 class HoneyProduction {
@@ -10,13 +12,12 @@ class HoneyProduction {
     
     public function addProduction($data) {
         $query = "INSERT INTO honey_production (hiveID, harvestDate, quantity, type, quality, notes) 
-                 VALUES (:hiveID, :harvestDate, :quantity, :type, :quality, :notes)";
-        
+                  VALUES (:hiveID, :harvestDate, :quantity, :type, :quality, :notes)";
         try {
             $hiveID = $data['hiveID'];
-            $harvestDate = $data['harvestDate'] ?? date('Y-m-d');
+            $harvestDate = $data['date'] ?? date('Y-m-d');
             $quantity = $data['quantity'];
-            $type = $data['type'];
+            $type = $data['productionType'];
             $quality = $data['quality'] ?? 'Standard';
             $notes = $data['notes'] ?? '';
             
@@ -28,11 +29,12 @@ class HoneyProduction {
             $stmt->bindParam(':quality', $quality);
             $stmt->bindParam(':notes', $notes);
             
-            if($stmt->execute()) {
+            if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Production record added successfully'];
             }
             return ['success' => false, 'error' => 'Failed to add production record'];
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
+            error_log('Database error: ' . $e->getMessage());
             return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
         }
     }
@@ -81,6 +83,18 @@ class HoneyProduction {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':startDate', $startDate);
             $stmt->bindParam(':endDate', $endDate);
+            $stmt->execute();
+            return ['success' => true, 'data' => $stmt->fetchAll(PDO::FETCH_ASSOC)];
+        } catch(PDOException $e) {
+            error_log('Database error: ' . $e->getMessage());
+            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+        }
+    }
+    
+    public function getAllProduction() {
+        $query = "SELECT * FROM honey_production ORDER BY productionID DESC";
+        try {
+            $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return ['success' => true, 'data' => $stmt->fetchAll(PDO::FETCH_ASSOC)];
         } catch(PDOException $e) {
