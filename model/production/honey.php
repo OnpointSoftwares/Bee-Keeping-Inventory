@@ -11,37 +11,57 @@ class HoneyProduction {
     }
     
     public function addProduction($data) {
-        error_log('Adding production(model): ' . json_encode($data));
+        error_log('Adding production (model): ' . json_encode($data));
+    
+        // Validate required fields
+        if (!isset($data['hiveID'], $data['type'], $data['quantity'])) {
+            return ['success' => false, 'error' => 'Missing required fields'];
+        }
+    
         $query = "INSERT INTO honey_production (hiveID, harvestDate, quantity, type, quality, notes) 
                   VALUES (:hiveID, :harvestDate, :quantity, :type, :quality, :notes)";
+    
         try {
-            $hiveID = $data['hiveID'];
-            $harvestDate = $data['harvestDate'] ?? date('Y-m-d');
-            $quantity = $data['quantity'];
-            $type = $data['type'];
-            $quality = $data['quality'] ?? 'Standard';
-            $notes = $data['notes'] ?? '';
-            
+            // Set default values for optional fields
+            $productionData = [
+                'hiveID'       => $data['hiveID'],
+                'harvestDate'  => $data['harvestDate'] ?? null,
+                'quantity'     => (int)$data['quantity'],
+                'type'         => $data['type'],
+                'quality'      => $data['quality'] ?? null,
+                'notes'        => $data['notes'] ?? null
+            ];
+    
+            error_log('Production data (prepared): ' . json_encode($productionData));
+    
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':hiveID', $hiveID);
-            $stmt->bindParam(':harvestDate', $harvestDate);
-            $stmt->bindParam(':quantity', $quantity);
-            $stmt->bindParam(':type', $type);
-            $stmt->bindParam(':quality', $quality);
-            $stmt->bindParam(':notes', $notes);
-            
+    
+            // Bind parameters
+            $stmt->bindParam(':hiveID', $productionData['hiveID']);
+            $stmt->bindParam(':harvestDate', $productionData['harvestDate']);
+            $stmt->bindParam(':quantity', $productionData['quantity'], PDO::PARAM_INT);
+            $stmt->bindParam(':type', $productionData['type']);
+            $stmt->bindParam(':quality', $productionData['quality']);
+            $stmt->bindParam(':notes', $productionData['notes']);
+    
             if ($stmt->execute()) {
-                return ['success' => true, 'message' => 'Production record added successfully'];
+                $insertedId = $this->conn->lastInsertId();
+                return [
+                    'success' => true,
+                    'message' => 'Production record added successfully',
+                    'id'      => $insertedId
+                ];
             } else {
-                error_log('Failed to add production record');
                 error_log('Failed to add production record');
                 return ['success' => false, 'error' => 'Failed to add production record'];
             }
+    
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
         }
     }
+    
     
     public function getHiveProduction($hiveID) {
         $query = "SELECT * FROM honey_production WHERE hiveID = :hiveID ORDER BY harvestDate DESC";

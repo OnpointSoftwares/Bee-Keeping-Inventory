@@ -1,4 +1,6 @@
-[08-May-2025 06:15:53 Europe/Berlin] Incoming request: {
+[08-May-2025 06:38:15 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Wildflower","quantity":"34","quality":"Premium","harvestDate":"2025-05-01","notes":"second"}
+[08-May-2025 06:38:15 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:41:18 Europe/Berlin] Incoming request: {
     "hiveID": 1,
     "harvestDate": "2025-05-08",
     "quantity": 10,
@@ -6,8 +8,336 @@
     "quality": "Good",
     "notes": "First harvest of the season"
 }
-[08-May-2025 06:15:53 Europe/Berlin] Server error: Invalid response from controller
-[08-May-2025 06:16:34 Europe/Berlin] Incoming request: {
+[08-May-2025 06:41:18 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:45:28 Europe/Berlin] Incoming request: hiveID=1&harvestDate=2025-05-01&quantity=12&type=flower&quality=standard&notes=second
+[08-May-2025 06:47:30 Europe/Berlin] Incoming request: hiveID=1&harvestDate=2025-05-01&quantity=12&type=flower&quality=standard&notes=second
+[08-May-2025 06:47:30 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:48:50 Europe/Berlin] Incoming request: hiveID=1&harvestDate=2025-05-01&quantity=12&type=flower&quality=standard&notes=second
+[08-May-2025 06:48:50 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:50:52 Europe/Berlin] Incoming request: hiveID=23&harvestDate=2025-05-08&quantity=23&type=flower&quality=standard&notes=good
+[08-May-2025 06:50:52 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:54:50 Europe/Berlin] Incoming request: hiveID=23&harvestDate=2025-05-08&quantity=23&type=flower&quality=standard&notes=good
+[08-May-2025 06:54:50 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:54:53 Europe/Berlin] Incoming request: hiveID=23&harvestDate=2025-05-08&quantity=23&type=flower&quality=standard&notes=good
+[08-May-2025 06:54:53 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 06:55:11 Europe/Berlin] Equipment request: {"action":"getAll"}
+[08-May-2025 06:55:11 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[08-May-2025 06:55:11 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[08-May-2025 07:11:48 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Wildflower","quantity":"34","quality":"Premium","harvestDate":"2025-05-01","notes":"good"}
+[08-May-2025 07:11:48 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:13:28 Europe/Berlin] Adding production: {"action":"add"}
+[08-May-2025 07:13:28 Europe/Berlin] Result from controller: {"success":false,"error":"Missing required fields"}
+[08-May-2025 07:14:08 Europe/Berlin] Incoming request: {"hiveNumber":"87","location":"library","dateEstablished":"2025-05-07","queenAge":"3","notes":"In good","action":"add"}
+[08-May-2025 07:27:45 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Wildflower","quantity":"23","quality":"Premium","harvestDate":"2025-05-08","notes":"good"}
+[08-May-2025 07:27:45 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:28:05 Europe/Berlin] Equipment request: {"action":"getAll"}
+[08-May-2025 07:28:05 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[08-May-2025 07:28:05 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[08-May-2025 07:32:36 Europe/Berlin] Equipment request: {"action":"getAll"}
+[08-May-2025 07:32:36 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[08-May-2025 07:32:36 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}
+[08-May-2025 07:35:05 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Clover","quantity":"34","quality":"Premium","harvestDate":"2025-05-07","notes":"234"}
+[08-May-2025 07:35:05 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:41:00 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Clover","quantity":"20","quality":"Premium","harvestDate":"2025-05-01","notes":"s"}
+[08-May-2025 07:41:00 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:47:11 Europe/Berlin] Incoming request: {
     "hiveID": 1,
     "harvestDate": "2025-05-08",
     "quantity": 10,
@@ -15,8 +345,12 @@
     "quality": "Good",
     "notes": "First harvest of the season"
 }
-[08-May-2025 06:16:34 Europe/Berlin] Server error: Invalid response from controller
-[08-May-2025 06:18:28 Europe/Berlin] Incoming request: {
+[08-May-2025 07:47:11 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:47:17 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Clover","quantity":"20","quality":"Premium","harvestDate":"2025-05-01","notes":"s"}
+[08-May-2025 07:47:17 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:57:37 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Clover","quantity":"20","quality":"Premium","harvestDate":"2025-05-01","notes":"s"}
+[08-May-2025 07:57:37 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:57:42 Europe/Berlin] Incoming request: {
     "hiveID": 1,
     "harvestDate": "2025-05-08",
     "quantity": 10,
@@ -24,24 +358,112 @@
     "quality": "Good",
     "notes": "First harvest of the season"
 }
-[08-May-2025 06:18:28 Europe/Berlin] Server error: Invalid response from controller
-[08-May-2025 06:20:35 Europe/Berlin] Incoming request: {
-    "hiveID": 1,
-    "harvestDate": "2025-05-08",
-    "quantity": 10,
-    "type": "Honey",
-    "quality": "Good",
-    "notes": "First harvest of the season"
-}
-[08-May-2025 06:20:35 Europe/Berlin] Server error: Invalid response from controller
-[08-May-2025 06:23:12 Europe/Berlin] Incoming request: {"hiveID":"2","productionType":null,"quantity":"23","unit":null,"date":null,"notes":"good"}
-[08-May-2025 06:23:12 Europe/Berlin] Server error: Invalid response from controller
-[08-May-2025 06:23:27 Europe/Berlin] Adding production: {"action":"add"}
-[08-May-2025 06:23:27 Europe/Berlin] Result from controller: {"success":false,"error":"Missing required fields"}
-[08-May-2025 06:24:51 Europe/Berlin] Adding production: {"action":"add"}
-[08-May-2025 06:24:51 Europe/Berlin] Result from controller: {"success":false,"error":"Missing required fields"}
-[08-May-2025 06:26:45 Europe/Berlin] Adding production: {"action":"add"}
-[08-May-2025 06:26:45 Europe/Berlin] Production data: {"hiveID":1,"harvestDate":"2025-05-08","quantity":0,"type":"Honey","quality":"Standard","notes":"good"}
-[08-May-2025 06:26:45 Europe/Berlin] Adding production(model): {"hiveID":1,"harvestDate":"2025-05-08","quantity":0,"type":"Honey","quality":"Standard","notes":"good"}
-[08-May-2025 06:26:45 Europe/Berlin] Result from addProduction: {"success":true,"message":"Production record added successfully"}
-[08-May-2025 06:26:45 Europe/Berlin] Result from controller: {"success":true,"message":"Production record added successfully"}
+[08-May-2025 07:57:42 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 07:57:53 Europe/Berlin] Adding production: {"action":"add"}
+[08-May-2025 07:57:53 Europe/Berlin] Result from controller: {"success":false,"error":"Missing required fields"}
+[08-May-2025 07:57:54 Europe/Berlin] Adding production: {"action":"add"}
+[08-May-2025 07:57:54 Europe/Berlin] Result from controller: {"success":false,"error":"Missing required fields"}
+[08-May-2025 08:00:22 Europe/Berlin] Incoming request: {"hiveID":"2","type":"Wildflower","quantity":10,"quality":"Premium","harvestDate":"2025-05-01","notes":"good"}
+[08-May-2025 08:00:22 Europe/Berlin] Server error: Invalid response from controller
+[08-May-2025 08:17:58 Europe/Berlin] Equipment request: {"action":"getAll"}
+[08-May-2025 08:17:58 Europe/Berlin] Fetched equipment: Array
+(
+    [0] => Array
+        (
+            [equipmentID] => 1
+            [name] => Electric Drill
+            [type] => Tool
+            [quantity] => 10
+            [condition_status] => Good
+            [purchaseDate] => 2023-03-10
+            [notes] => Used in workshop A
+            [status] => Active
+        )
+
+    [1] => Array
+        (
+            [equipmentID] => 2
+            [name] => Safety Helmet
+            [type] => Safety Gear
+            [quantity] => 20
+            [condition_status] => New
+            [purchaseDate] => 2024-01-15
+            [notes] => Standard issue helmets
+            [status] => Active
+        )
+
+    [2] => Array
+        (
+            [equipmentID] => 3
+            [name] => Welding Machine
+            [type] => Tool
+            [quantity] => 5
+            [condition_status] => Fair
+            [purchaseDate] => 2022-06-22
+            [notes] => Needs maintenance
+            [status] => Active
+        )
+
+    [3] => Array
+        (
+            [equipmentID] => 4
+            [name] => High-Vis Vest
+            [type] => Safety Gear
+            [quantity] => 50
+            [condition_status] => New
+            [purchaseDate] => 2024-03-01
+            [notes] => 
+            [status] => Active
+        )
+
+    [4] => Array
+        (
+            [equipmentID] => 5
+            [name] => Ladder
+            [type] => Tool
+            [quantity] => 7
+            [condition_status] => Used
+            [purchaseDate] => 2021-11-09
+            [notes] => Stored in warehouse 2
+            [status] => Active
+        )
+
+    [5] => Array
+        (
+            [equipmentID] => 14
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [6] => Array
+        (
+            [equipmentID] => 15
+            [name] => 
+            [type] => 
+            [quantity] => 0
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => 
+            [status] => Active
+        )
+
+    [7] => Array
+        (
+            [equipmentID] => 16
+            [name] => Boots
+            [type] => Protective Gear
+            [quantity] => 23
+            [condition_status] => New
+            [purchaseDate] => 2025-05-07
+            [notes] => good
+            [status] => Active
+        )
+
+)
+
+[08-May-2025 08:17:58 Europe/Berlin] Equipment request: {"action":"getInventoryReport"}

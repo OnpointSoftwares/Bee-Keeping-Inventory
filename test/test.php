@@ -49,7 +49,6 @@ require_once(__DIR__ . '/controllers/auth.php');
 require_once(__DIR__ . '/../controllers/hive/HiveController.php');
 require_once(__DIR__ . '/../controllers/production/ProductionController.php');
 require_once(__DIR__ . '/../controllers/equipment/EquipmentController.php');
-require_once(__DIR__ . '/../controllers/health/HealthController.php');
 
 // Get the request path
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -63,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_log('Incoming request: ' . $rawInput);
     $input = json_decode($rawInput, true) ?? [];
     if (json_last_error() !== JSON_ERROR_NONE) {
-        $input = array_merge($_POST, $_FILES);
+        $input = $_POST;
     }
 } else {
     $input = $_GET;
@@ -188,22 +187,6 @@ error_log('Result from controller: ' . json_encode($result));
                     'error' => 'No action specified'
                 ]);
                 exit();
-            }
-            break;
-            
-        case 'health':
-            $controller = new HealthController($db);
-            if (isset($input['action'])) {
-                switch ($input['action']) {
-                    case 'add':
-                        $result = $controller->addHealthRecord($input);
-                        break;
-                    case 'get':
-                        $result = $controller->getHealthRecords($input['hiveID']);
-                        break;
-                    default:
-                        throw new Exception('Invalid health action: ' . ($input['action'] ?? ''));
-                }
             }
             break;
             

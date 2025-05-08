@@ -186,31 +186,38 @@ class HiveManager {
                 action: 'getOne',
                 hiveID: hiveID
             });
-            
+    
+            // Log the API response for debugging
+            console.log('API Response:', data.data);
+    
+            // Validate data structure
+            if (!data.data || !data.data.hiveNumber || !data.data.location || !data.data.dateEstablished) {
+                throw new Error('Invalid data received from the server.');
+            }
+    
             // Update view hive modal with data
             const modal = document.getElementById('viewHiveModal');
             if (modal) {
-                modal.querySelector('.modal-title').textContent = `Hive #${data.hiveNumber}`;
+                modal.querySelector('.modal-title').textContent = `Hive #${data.data.hiveNumber}`;
                 modal.querySelector('.modal-body').innerHTML = `
                     <div class="row">
                         <div class="col-md-6">
                             <h5>Hive Details</h5>
-                            <p><strong>Location:</strong> ${data.location}</p>
-                            <p><strong>Established:</strong> ${formatDate(data.dateEstablished)}</p>
-                            <p><strong>Queen Age:</strong> ${data.queenAge} months</p>
-                            <p><strong>Notes:</strong> ${data.notes || 'No notes'}</p>
+                            <p><strong>Location:</strong> ${data.data.location}</p>
+                            <p><strong>Established:</strong> ${formatDate(data.data.dateEstablished)}</p>
+                            <p><strong>Queen Age:</strong> ${data.data.queenAge} months</p>
+                            <p><strong>Notes:</strong> ${data.data.notes || 'No notes'}</p>
                         </div>
                         <div class="col-md-6">
                             <h5>Health History</h5>
-                            ${this.generateHealthTimeline(data.healthHistory)}
+                            ${this.generateHealthTimeline(data.data.healthHistory)}
                         </div>
                     </div>
                 `;
-                
                 new bootstrap.Modal(modal).show();
             }
         } catch (error) {
-            showToast(error.message, 'error');
+            showToast('Error loading hive details: ' + error.message, 'error');
         }
     }
 

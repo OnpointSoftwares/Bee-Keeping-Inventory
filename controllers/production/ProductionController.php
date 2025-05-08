@@ -40,27 +40,47 @@ class ProductionController {
     }
 
     public function addProduction($input) {
-        error_log('Adding production: ' . json_encode($input));
-        /*if (!isset($input['hiveID']) || !isset($input['type']) || !isset($input['quantity'])) {
-            return ['success' => false, 'error' => 'Missing required fields'];
-        }*/
+        error_log('Adding production (controller): ' . json_encode($input));
+    
+        // Validate required fields
+        $requiredFields = ['hiveID', 'type', 'quantity'];
+        $validation = $this->validateRequiredFields($input, $requiredFields);
+        if (!$validation['success']) {
+            return $validation;
+        }
+    
         try {
+            // Build production data
             $productionData = [
-                'hiveID' => $input['hiveID']?? 1,
-                'harvestDate' => $input['harvestDate'] ?? date('Y-m-d'), // Ensure this is mapped correctly
-                'quantity' => $input['quantity'] ?? 0,
-                'type' => $input['type'] ?? 'Honey', // Default type
-                'quality' => $input['quality'] ?? 'Standard',
-                'notes' => $input['notes'] ?? 'good'
+                'hiveID'       => $input['hiveID'],
+                'harvestDate'  => $input['harvestDate'] ?? null,
+                'quantity'     => $input['quantity'],
+                'type'         => $input['type'],
+                'quality'      => $input['quality'] ?? null,
+                'notes'        => $input['notes'] ?? null
             ];
-            error_log('Production data: ' . json_encode($productionData));
+    
+            error_log('Production data (controller-prepared): ' . json_encode($productionData));
+    
+            // Call model
             $result = $this->productionModel->addProduction($productionData);
-            error_log('Result from addProduction: ' . json_encode($result));
+            error_log('Result from addProduction (model): ' . json_encode($result));
             return $result;
+    
         } catch (Exception $e) {
+            error_log('Controller exception: ' . $e->getMessage());
             return ['success' => false, 'error' => $e->getMessage()];
         }
     }
+    public function validateRequiredFields($data, $requiredFields) {
+        foreach ($requiredFields as $field) {
+            if (!isset($data[$field]) || empty($data[$field])) {
+                return ['success' => false, 'error' => "Missing required field: $field"];
+            }
+        }
+        return ['success' => true];
+    }
+        
     public function getHiveProduction($hiveID) {
         if (!isset($hiveID)) {
             return ['success' => false, 'error' => 'Missing hive ID'];

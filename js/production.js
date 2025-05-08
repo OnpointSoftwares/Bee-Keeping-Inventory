@@ -174,9 +174,7 @@ function updateProductionChart(report) {
 // Load production data for charts
 async function loadProductionData() {
     try {
-        const response = await fetch('api/production?action=getAllProduction');
-        const data = await response.json();
-
+        const data = await api.get('production', { action: 'getAllProduction' });
         if (data.success) {
             displayProduction(data.data); // Display the production data in the UI
             updateHiveFilter(data.data); // Update the hive filter with the production data
@@ -185,7 +183,7 @@ async function loadProductionData() {
             console.error('Error loading production data:', data.error);
         }
     } catch (error) {
-        console.error('Fetch error:', error);
+        console.error('Error:', error);
     }
 }
 // Update charts with production data
@@ -222,13 +220,14 @@ function handleAddProduction(e) {
     const formData = new FormData(e.target);
     const data = {
         hiveID: formData.get('hiveID'),
-        productionType: formData.get('productionType'),
-        quantity: formData.get('quantity'),
-        unit: formData.get('unit'),
-        date: formData.get('date'),
+        type: formData.get('type'),
+        quantity: parseInt(formData.get('quantity'), 10), // Ensure quantity is an integer
+        quality: formData.get('quality'),
+        harvestDate: formData.get('harvestDate'),
         notes: formData.get('notes')
     };
 
+    console.log('Data being sent:', data); // Log the data being sent to the server
     fetch('api/production?action=add', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -238,6 +237,7 @@ function handleAddProduction(e) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log('Add Production Response:', data); // Log the response for debugging
         if (data.success) {
             showToast('success', 'Production record added successfully');
             loadProduction();

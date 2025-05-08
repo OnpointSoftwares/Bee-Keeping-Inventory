@@ -6,7 +6,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add health record form submission
-    document.getElementById('addHealthForm')?.addEventListener('submit', handleAddHealth);
+    document.getElementById('addHealthForm')?.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(e.target);
+        const data = {
+            hiveID: formData.get('hiveID'),
+            healthStatus: formData.get('healthStatus'),
+            date: formData.get('date'),
+            notes: formData.get('notes')
+        };
+
+        fetch('http://localhost/inventory-management-system/api/health?action=add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Health record added successfully!');
+                e.target.reset(); // Reset the form
+            } else {
+                alert('Error: ' + result.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 
     // Update health record form submission
     document.getElementById('updateHealthForm')?.addEventListener('submit', handleUpdateHealth);
@@ -175,60 +205,6 @@ function updateHealthSummary(data) {
     summaryContainer.innerHTML = html;
 }
 
-// Handle add health record
-async function handleAddHealth() {
-    try {
-        const data = getFormData('addHealthCheckForm');
-        data.action = 'add';
-        
-        const result = await api.post('health', data);
-        if (result.success) {
-            showToast('Health record added successfully');
-            loadHealth();
-            document.getElementById('addHiveForm').reset();
-        } else {
-            showToast('Failed to add health record', 'error');
-        }
-    } catch (error) {
-        showToast(error.message, 'error');
-    }
-}
-/*function handleAddHealth(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-        controller: 'health',
-        action: 'add',
-        hiveID: formData.get('hiveID'),
-        checkDate: formData.get('checkDate'),
-        colonyStrength: formData.get('colonyStrength'),
-        diseaseStatus: formData.get('diseaseStatus'),
-        foodStores: formData.get('foodStores'),
-        notes: formData.get('notes')
-    };
-
-    fetch('api/handler.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showToast('success', 'Health record added successfully');
-            loadHealth();
-            $('#addHealthModal').modal('hide');
-            e.target.reset();
-        } else {
-            showToast('error', 'Error adding health record: ' + data.error);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showToast('error', 'Failed to add health record');
-    });
-}
-*/
 // Handle update health record
 function handleUpdateHealth(e) {
     e.preventDefault();
@@ -250,12 +226,11 @@ function handleUpdateHealth(e) {
     })
     .then(response => response.json())
     .then(data => {
-        if (result.success) {
-            showToast('Health record added successfully');
-            loadHealth(); // Update this line
-            document.getElementById('addHiveForm').reset();
+        if (data.success) {
+            showToast('Health record updated successfully');
+            loadHealth();
         } else {
-            showToast('Failed to add health record', 'error');
+            showToast('Failed to update health record', 'error');
         }
     })
     .catch(error => {
