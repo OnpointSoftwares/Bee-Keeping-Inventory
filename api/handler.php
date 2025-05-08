@@ -122,8 +122,8 @@ try {
     if (isset($input['action'])) {
         switch ($input['action']) {
             case 'add':
-
                 $result = $controller->addProduction($input);
+error_log('Result from controller: ' . json_encode($result));
                 break;
             case 'getReport':
                 $result = $controller->getReport($input); // Pass $input to the method

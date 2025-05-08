@@ -229,10 +229,12 @@ function handleAddProduction(e) {
         notes: formData.get('notes')
     };
 
-    fetch('/inventory-management-system/api/production/?action=add', {
+    fetch('api/production?action=add', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data)
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -240,6 +242,7 @@ function handleAddProduction(e) {
             showToast('success', 'Production record added successfully');
             loadProduction();
             loadProductionReport();
+            updateHiveFilter(data.report); // Pass the report array to updateHiveFilter
             $('#addProductionModal').modal('hide');
             e.target.reset();
         } else {
@@ -355,6 +358,11 @@ function formatDate(dateString) {
 
 // Update hive filter
 function updateHiveFilter(productionData) {
+    if (!Array.isArray(productionData)) {
+        console.error('Expected productionData to be an array, but got:', productionData);
+        return; // Exit if productionData is not an array
+    }
+
     const hiveIDs = productionData.map(item => item.hiveID);
     const uniqueHiveIDs = [...new Set(hiveIDs)];
 

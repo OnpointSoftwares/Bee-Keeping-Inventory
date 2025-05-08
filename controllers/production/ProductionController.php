@@ -41,23 +41,26 @@ class ProductionController {
 
     public function addProduction($input) {
         error_log('Adding production: ' . json_encode($input));
-        if (!isset($input['hiveID']) || !isset($input['productionType']) || !isset($input['quantity']) || !isset($input['unit']) || !isset($input['date'])) {
+        /*if (!isset($input['hiveID']) || !isset($input['type']) || !isset($input['quantity'])) {
             return ['success' => false, 'error' => 'Missing required fields'];
-        }
+        }*/
         try {
             $productionData = [
-                'hiveID' => $input['hiveID'],
-                'productionType' => $input['productionType'],
-                'quantity' => $input['quantity'],
-                'unit' => $input['unit'],
-                'date' => $input['date']
+                'hiveID' => $input['hiveID']?? 1,
+                'harvestDate' => $input['harvestDate'] ?? date('Y-m-d'), // Ensure this is mapped correctly
+                'quantity' => $input['quantity'] ?? 0,
+                'type' => $input['type'] ?? 'Honey', // Default type
+                'quality' => $input['quality'] ?? 'Standard',
+                'notes' => $input['notes'] ?? 'good'
             ];
-            return $this->productionModel->addProduction($productionData);
+            error_log('Production data: ' . json_encode($productionData));
+            $result = $this->productionModel->addProduction($productionData);
+            error_log('Result from addProduction: ' . json_encode($result));
+            return $result;
         } catch (Exception $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
     }
-
     public function getHiveProduction($hiveID) {
         if (!isset($hiveID)) {
             return ['success' => false, 'error' => 'Missing hive ID'];

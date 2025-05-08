@@ -11,13 +11,14 @@ class HoneyProduction {
     }
     
     public function addProduction($data) {
+        error_log('Adding production(model): ' . json_encode($data));
         $query = "INSERT INTO honey_production (hiveID, harvestDate, quantity, type, quality, notes) 
                   VALUES (:hiveID, :harvestDate, :quantity, :type, :quality, :notes)";
         try {
             $hiveID = $data['hiveID'];
-            $harvestDate = $data['date'] ?? date('Y-m-d');
+            $harvestDate = $data['harvestDate'] ?? date('Y-m-d');
             $quantity = $data['quantity'];
-            $type = $data['productionType'];
+            $type = $data['type'];
             $quality = $data['quality'] ?? 'Standard';
             $notes = $data['notes'] ?? '';
             
@@ -31,8 +32,11 @@ class HoneyProduction {
             
             if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Production record added successfully'];
+            } else {
+                error_log('Failed to add production record');
+                error_log('Failed to add production record');
+                return ['success' => false, 'error' => 'Failed to add production record'];
             }
-            return ['success' => false, 'error' => 'Failed to add production record'];
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
