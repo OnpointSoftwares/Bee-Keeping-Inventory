@@ -1,12 +1,12 @@
 // api.js
 
-const api = {
+const apiClient = {
     async post(endpoint, data) {
         try {
-            const response = await fetch(`localhost/inventory-management-system/api/${endpoint}/`, {
+            const response = await fetch(`/inventory-management-system/api/${endpoint}/`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(data)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
             return await response.json();
         } catch (error) {
@@ -17,7 +17,7 @@ const api = {
 
     async get(endpoint, params = {}) {
         const queryString = new URLSearchParams(params).toString();
-        const url = `localhost/inventory-management-system/api/${endpoint}/?${queryString}`;
+        const url = `/inventory-management-system/api/${endpoint}/?${queryString}`;
         try {
             const response = await fetch(url);
             return await response.json();
@@ -29,4 +29,4 @@ const api = {
 };
 
 // Attach to the global window object
-window.api = api;
+window.apiClient = apiClient;

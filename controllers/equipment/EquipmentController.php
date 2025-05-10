@@ -1,102 +1,139 @@
 <?php
-require_once __DIR__ . '/../../model/equipment/equipment.php';
+require_once __DIR__ . '/../BaseController.php';
+require_once __DIR__ . '/../../model/equipment/Equipment.php';
 
-class EquipmentController {
-    public $equipmentModel;
-    public $db;
+class EquipmentController extends BaseController {
+    private $equipmentModel;
     
-    public function __construct($db) {
-        $this->equipmentModel = new Equipment($db);
-        $this->db = $db;
+    public function __construct() {
+        $this->equipmentModel = new Equipment();
     }
     
-    public function handleRequest($input) {
-        $action = isset($input['action']) ? $input['action'] : '';
+    public function handleRequest($action, $params) {
         switch($action) {
             case 'add':
-                return $this->addEquipment($input);
+                return $this->addEquipment($params);
             case 'update':
-                return $this->updateEquipment($input);
+                return $this->updateEquipment($params);
             case 'delete':
-                return $this->deleteEquipment($input);
+                return $this->deleteEquipment($params);
             case 'getAll':
                 return $this->getAllEquipment();
+            case 'getById':
+                return $this->getEquipmentById($params);
             case 'getByType':
-                return $this->getByType();
-            case 'getInventoryReport':
-                return $this->getInventoryReport();
+                return $this->getEquipmentByType($params);
+            case 'getByCondition':
+                return $this->getEquipmentByCondition($params);
+            case 'getInventorySummary':
+                return $this->getInventorySummary();
             default:
-                return ['success' => false, 'error' => 'Invalid action'];
+                return $this->error('Invalid action');
         }
     }
     
-    public function addEquipment($input) {
+    private function addEquipment($params) {
+        $validation = $this->validateParams($params, ['name', 'type', 'quantity']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
         try {
-            $data = [
-                'name' => $input['name'] ?? '',
-                'type' => $input['type'] ?? '',
-                'quantity' => $input['quantity'] ?? 0,
-                'condition_status' => $input['condition'] ?? 'New',
-                'purchaseDate' => $input['purchaseDate'] ?? date('Y-m-d'),
-                'notes' => $input['notes'] ?? ''
-            ];
-            
-            return $this->equipmentModel->addEquipment($data);
+            $result = $this->equipmentModel->addEquipment($params);
+            return $this->success(['id' => $result], 'Equipment added successfully');
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
         }
     }
     
-    public function updateEquipment($input) {
+    private function updateEquipment($params) {
+        $validation = $this->validateParams($params, ['equipmentID', 'name', 'type', 'quantity']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
         try {
-            $data = [
-                'equipmentID' => $input['equipmentID'] ?? 0,
-                'name' => $input['name'] ?? '',
-                'type' => $input['type'] ?? '',
-                'quantity' => $input['quantity'] ?? 0,
-                'condition_status' => $input['condition'] ?? 'Used',
-                'notes' => $input['notes'] ?? ''
-            ];
-            
-            return $this->equipmentModel->updateEquipment($data);
+            $result = $this->equipmentModel->updateEquipment($params);
+            return $this->success(null, 'Equipment updated successfully');
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
         }
     }
     
-    public function deleteEquipment($input) {
+    private function deleteEquipment($params) {
+        $validation = $this->validateParams($params, ['equipmentID']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
         try {
-            $equipmentID = $input['equipmentID'] ?? 0;
-            return $this->equipmentModel->deleteEquipment($equipmentID);
+            $result = $this->equipmentModel->deleteEquipment($params['equipmentID']);
+            return $this->success(null, 'Equipment deleted successfully');
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
         }
     }
     
-    public function getAllEquipment() {
+    private function getAllEquipment() {
         try {
             $equipment = $this->equipmentModel->getAllEquipment();
-            error_log('Fetched equipment: ' . print_r($equipment, true)); // Log the fetched equipment
-            return ['success' => true, 'data' => $equipment];
+            return $this->success($equipment);
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
         }
     }
     
-    public function getByType() {
+    private function getEquipmentById($params) {
+        $validation = $this->validateParams($params, ['equipmentID']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
         try {
-            $type = $_GET['type'] ?? '';
-            return $this->equipmentModel->getByType($type);
+            $equipment = $this->equipmentModel->getEquipmentById($params['equipmentID']);
+            if (!$equipment) {
+                return $this->error('Equipment not found', 404);
+            }
+            return $this->success($equipment);
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
         }
     }
     
-    public function getInventoryReport() {
+    private function getEquipmentByType($params) {
+        $validation = $this->validateParams($params, ['type']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
         try {
-            return $this->equipmentModel->getInventoryReport();
+            $equipment = $this->equipmentModel->getEquipmentByType($params['type']);
+            return $this->success($equipment);
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            return $this->error($e->getMessage());
+        }
+    }
+    
+    private function getEquipmentByCondition($params) {
+        $validation = $this->validateParams($params, ['condition']);
+        if ($validation !== true) {
+            return $this->error($validation);
+        }
+        
+        try {
+            $equipment = $this->equipmentModel->getEquipmentByCondition($params['condition']);
+            return $this->success($equipment);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+    
+    private function getInventorySummary() {
+        try {
+            $summary = $this->equipmentModel->getInventorySummary();
+            return $this->success($summary);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
         }
     }
 }

@@ -1,53 +1,107 @@
 // Equipment Management
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Show equipment section when nav link is clicked
-    document.querySelector('a[href="#equipment"]').addEventListener('click', function() {
+// Initialize equipment functionality
+function initializeEquipment() {
+    // Check if we're on the equipment page
+    if (document.getElementById('equipment') || document.querySelector('[data-section="equipment"]')) {
+        console.log('Equipment section found, loading data');
+        // Load equipment data
         loadEquipment();
         loadInventoryReport();
-    });
-
-    // Initialize equipment type filter
-    initializeEquipmentTypeFilter();
-
+        
+        // Initialize equipment type filter
+        initializeEquipmentTypeFilter();
+    } else {
+        console.log('Equipment section not found, skipping initialization');
+        return; // Exit if we're not on the equipment page
+    }
+    
     // Add equipment form submission
-    document.getElementById('addEquipmentForm')?.addEventListener('submit', handleAddEquipment);
-
+    const addEquipmentForm = document.getElementById('addEquipmentForm');
+    if (addEquipmentForm) {
+        addEquipmentForm.addEventListener('submit', handleAddEquipment);
+    }
+    
     // Update equipment form submission
-    document.getElementById('updateEquipmentForm')?.addEventListener('submit', handleUpdateEquipment);
+    const updateEquipmentForm = document.getElementById('updateEquipmentForm');
+    if (updateEquipmentForm) {
+        updateEquipmentForm.addEventListener('submit', handleUpdateEquipment);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize equipment when the DOM is fully loaded
+    initializeEquipment();
 });
 
 // Load equipment data
 async function loadEquipment() {
     try {
-        const data = await window.api.get('equipment', { action: 'getAll' });
-        console.log('Equipment API Response:', data); // Log the response
-        if (data.success) {
-            displayEquipment(data.data); // Pass the actual array of equipment
-            updateTypeFilter(data.data);
-        } else {
-            alert('Error loading equipment: ' + data.error);
+        // Update active section - safely check if element exists
+        const equipmentSection = document.getElementById('equipment');
+        if (!equipmentSection) {
+            console.warn('Equipment section not found in the DOM');
+            return;
+        }
+        
+        document.querySelectorAll('.content-section').forEach(section => {
+            if (section) section.style.display = 'none';
+        });
+        equipmentSection.style.display = 'block';
+        
+        // Fetch equipment data using direct PHP file instead of API
+        try {
+            const response = await fetch('/inventory-management-system/get_equipment_data.php');
+            const data = await response.json();
+            
+            if (data.success) {
+                displayEquipment(data.data);
+            } else {
+                showToast('Failed to load equipment data: ' + (data.error || 'Unknown error'), 'error');
+                console.error('Failed to load equipment data:', data);
+            }
+        } catch (error) {
+            console.error('Error fetching equipment data:', error);
+            showToast('Error fetching equipment data: ' + error.message, 'error');
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to load equipment: ' + error.message);
+        console.error('Error in loadEquipment:', error);
     }
 }
 
-// Load and display inventory report
+// Load inventory report
 async function loadInventoryReport() {
     try {
-        const data = await window.api.get('equipment', { action: 'getInventoryReport' });
+        console.log('Loading inventory report...');
+        
+        // Check if the inventory report container exists
+        const reportContainer = document.getElementById('inventoryReportContainer');
+        if (!reportContainer) {
+            console.warn('Inventory report container not found, skipping report load');
+            return;
+        }
+        
+        // Use direct PHP file instead of API
+        const response = await fetch('/inventory-management-system/get_equipment_report.php');
+        const data = await response.json();
+        
+        console.log('Inventory report response:', data); // Log the full response
+        
         if (data.success) {
-            displayInventoryReport(data.report);
-            updateInventoryChart(data.report);
-            document.getElementById('totalItems').textContent = data.totalItems || 0;
+            displayInventoryReport(data.data);
+            updateInventoryChart(data.data);
         } else {
-            alert('Error loading inventory report: ' + data.error);
+            console.error('Failed to load inventory report:', data);
+            reportContainer.innerHTML = '<div class="alert alert-warning">Failed to load inventory report. Please try again later.</div>';
+            showToast('Failed to load inventory report: ' + (data.error || 'Unknown error'), 'error');
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to load inventory report: ' + error.message);
+        console.error('Error in loadInventoryReport:', error);
+        const reportContainer = document.getElementById('inventoryReportContainer');
+        if (reportContainer) {
+            reportContainer.innerHTML = '<div class="alert alert-danger">Error loading inventory report: ' + error.message + '</div>';
+        }
+        showToast('Error loading inventory report: ' + error.message, 'error');
     }
 }
 
@@ -65,7 +119,6 @@ function displayEquipment(data) {
                     <th>Quantity</th>
                     <th>Condition</th>
                     <th>Purchase Date</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,14 +136,6 @@ function displayEquipment(data) {
                     </span>
                 </td>
                 <td>${formatDate(item.purchaseDate)}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary me-1" onclick="editEquipment(${item.equipmentID})">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteEquipment(${item.equipmentID})">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
             </tr>
         `;
     });
@@ -138,6 +183,16 @@ function updateInventoryChart(report) {
 
     const labels = report.map(item => item.type);
     const data = report.map(item => item.totalQuantity);
+    
+    // Enhanced colors for better visualization
+    const backgroundColors = [
+        'rgba(78, 115, 223, 0.8)',
+        'rgba(28, 200, 138, 0.8)',
+        'rgba(246, 194, 62, 0.8)',
+        'rgba(231, 74, 59, 0.8)',
+        'rgba(54, 185, 204, 0.8)',
+        'rgba(133, 135, 150, 0.8)'
+    ];
 
     window.inventoryChart = new Chart(ctx, {
         type: 'doughnut',
@@ -145,21 +200,105 @@ function updateInventoryChart(report) {
             labels: labels,
             datasets: [{
                 data: data,
-                backgroundColor: [
-                    '#4e73df', '#1cc88a', '#36b9cc',
-                    '#f6c23e', '#e74a3b', '#858796'
-                ]
+                backgroundColor: backgroundColors,
+                borderWidth: 1,
+                borderColor: '#ffffff',
+                hoverOffset: 10
             }]
         },
         options: {
             maintainAspectRatio: false,
+            cutout: '70%',
             plugins: {
                 legend: {
-                    position: 'bottom'
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 12
+                        },
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14
+                    },
+                    bodyFont: {
+                        size: 13
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.raw;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = Math.round((value / total) * 100);
+                            return `${context.label}: ${value} units (${percentage}%)`;
+                        }
+                    }
                 }
             }
         }
     });
+    
+    // Add equipment condition chart
+    const conditionCtx = document.getElementById('equipmentConditionChart')?.getContext('2d');
+    if (conditionCtx && report.byCondition) {
+        // Destroy existing chart if it exists
+        if (window.equipmentConditionChart instanceof Chart) {
+            window.equipmentConditionChart.destroy();
+        }
+        
+        const conditionLabels = report.byCondition.map(item => item.condition);
+        const conditionData = report.byCondition.map(item => item.count);
+        
+        // Colors based on condition
+        const conditionColors = {
+            'New': 'rgba(28, 200, 138, 0.8)',
+            'Good': 'rgba(54, 185, 204, 0.8)',
+            'Fair': 'rgba(246, 194, 62, 0.8)',
+            'Poor': 'rgba(231, 74, 59, 0.8)'
+        };
+        
+        const backgroundColors = conditionLabels.map(label => conditionColors[label] || 'rgba(133, 135, 150, 0.8)');
+        
+        window.equipmentConditionChart = new Chart(conditionCtx, {
+            type: 'pie',
+            data: {
+                labels: conditionLabels,
+                datasets: [{
+                    data: conditionData,
+                    backgroundColor: backgroundColors,
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 12
+                            },
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.raw;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${context.label} Condition: ${value} items (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
 
 // Initialize equipment type filter
@@ -233,6 +372,7 @@ async function handleAddEquipment(e) {
         showToast('error', 'Failed to add equipment');
     }
 }
+
 // Handle update equipment form submission
 function handleUpdateEquipment(e) {
     e.preventDefault();

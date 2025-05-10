@@ -1,0 +1,7 @@
+[10-May-2025 07:27:31 Europe/Berlin] Raw data received: 
+[10-May-2025 07:27:31 Europe/Berlin] Decoded data: 
+[10-May-2025 07:27:31 Europe/Berlin] Controller: , Action: 
+[10-May-2025 07:27:31 Europe/Berlin] ProductionController: Action received: 'add', Params: null
+[10-May-2025 07:27:31 Europe/Berlin] ProductionController: Calling addProduction
+[10-May-2025 07:27:31 Europe/Berlin] Adding production with params: null
+[10-May-2025 07:27:31 Europe/Berlin] Validation failed: Missing required parameter: hiveID

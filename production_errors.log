@@ -1,0 +1,14 @@
+[10-May-2025 07:11:38 Europe/Berlin] Received data: Array
+(
+    [hiveID] => 2
+    [harvestDate] => 2025-05-10
+    [quantity] => 23
+    [type] => Wildflower
+    [quality] => Premium
+    [notes] => good
+)
+
+[10-May-2025 07:11:38 Europe/Berlin] PHP Fatal error:  Uncaught Error: PDOStatement::bindParam(): Argument #2 ($var) cannot be passed by reference in /opt/lampp/htdocs/inventory-management-system/add_production.php:63
+Stack trace:
+#0 {main}
+  thrown in /opt/lampp/htdocs/inventory-management-system/add_production.php on line 63

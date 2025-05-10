@@ -1,0 +1,48 @@
+# API .htaccess file for Beekeeping Inventory Management System
+# Enable URL rewriting
+RewriteEngine On
+
+# Set the base directory for the API
+RewriteBase /inventory-management-system/api/
+
+# Allow direct access to the handler.php file
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+inventory-management-system/api/handler\.php [NC]
+RewriteRule ^ - [L]
+
+# Don't apply rules to existing files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route all API requests to the handler.php script
+RewriteRule ^(.*)$ handler.php [QSA,L]
+
+# Set JSON content type for API responses
+<IfModule mod_headers.c>
+    Header set Content-Type "application/json" 
+</IfModule>
+
+# Enable CORS for API
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header set Access-Control-Max-Age "3600"
+</IfModule>
+
+# Handle OPTIONS requests for CORS preflight
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(^#.*#|\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)|~)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

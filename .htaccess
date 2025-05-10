@@ -1,12 +1,49 @@
+# Main .htaccess file for Beekeeping Inventory Management System
+# Enable URL rewriting
 RewriteEngine On
 
-# Handle API requests
-RewriteRule ^api/([^/]+)/?$ api/handler.php [QSA,L]
+# Set the base directory
+RewriteBase /inventory-management-system/
 
-# Allow direct access to files
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+# Don't apply rules to existing files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
-# Redirect all other requests to index.php
-RewriteRule ^ index.php [QSA,L]
+# API routes - forward to the API handler
+RewriteRule ^api/(.*)$ api/handler.php [QSA,L]
+
+# Frontend routes - forward to index.php with the page parameter
+RewriteRule ^(dashboard|hives|equipment|production|health|health_history|reports|settings)/?$ index.php?page=$1 [QSA,L]
+
+# Default route - redirect to dashboard
+RewriteRule ^$ index.php?page=dashboard [QSA,L]
+
+# PHP settings
+php_flag display_errors Off
+php_value error_reporting E_ALL
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(^#.*#|\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)|~)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

@@ -49,18 +49,24 @@ function handleLogin(BASE_API_URL) {
         return;
     }
 
+    // Log the request for debugging
+    console.log('Sending login request to:', BASE_API_URL);
+    
     fetch(`${BASE_API_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            controller: 'auth',
             action: 'login',
             username: username,
             password: password
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Response status:', response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log('Login response:', data);
         if (data.success) {
             showMessage(messageDiv, 'Login successful! Redirecting...', 'success');
             window.location.href = 'index.php';
@@ -94,9 +100,8 @@ function handleRegister(BASE_API_URL) {
 
     fetch(`${BASE_API_URL}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            controller: 'auth',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
             action: 'register',
             fullName: fullName,
             username: username,
@@ -141,7 +146,6 @@ function handleResetPassword(BASE_API_URL) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            controller: 'auth',
             action: 'resetPassword',
             username: username,
             password: password1

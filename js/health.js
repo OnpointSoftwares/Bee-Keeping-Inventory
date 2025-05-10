@@ -1,321 +1,272 @@
 // Health Management
 document.addEventListener('DOMContentLoaded', function() {
     // Show health section when nav link is clicked
-    document.querySelector('a[href="#health"]').addEventListener('click', function() {
+    document.querySelector('a[href="#health"]')?.addEventListener('click', function() {
         loadHealth();
     });
 
     // Add health record form submission
-    document.getElementById('addHealthForm')?.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-
+    document.getElementById('healthCheckForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
         const formData = new FormData(e.target);
         const data = {
+            action: 'addHealthCheck',
             hiveID: formData.get('hiveID'),
-            healthStatus: formData.get('healthStatus'),
-            date: formData.get('date'),
-            notes: formData.get('notes')
+            checkDate: formData.get('checkDate') || new Date().toISOString().split('T')[0],
+            queenPresent: formData.get('queenPresent') === 'yes' ? 1 : 0,
+            colonyStrength: formData.get('colonyStrength') || 'Moderate',
+            diseaseSymptoms: formData.get('diseaseSymptoms') || '',
+            pestProblems: formData.get('pestProblems') || '',
+            notes: formData.get('notes') || ''
         };
 
-        fetch('http://localhost/inventory-management-system/api/health?action=add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
+        console.log('Submitting health check:', data);
+
+        try {
+            const result = await api.post('hive', data);
+            console.log('Health check response:', result);
+            
             if (result.success) {
-                alert('Health record added successfully!');
-                e.target.reset(); // Reset the form
+                showToast('Health check added successfully', 'success');
+                e.target.reset();
+                loadHealth(); // Reload the health records
             } else {
-                alert('Error: ' + result.error);
+                showToast('Error: ' + (result.error || 'Failed to add health check'), 'error');
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error:', error);
-        });
+            showToast('Error: ' + error.message, 'error');
+        }
     });
 
-    // Update health record form submission
-    document.getElementById('updateHealthForm')?.addEventListener('submit', handleUpdateHealth);
+    // Initial load of health data
+    loadHealth();
 });
 
 // Load health data
 async function loadHealth() {
+    console.log('Loading health data...');
     try {
-        const data = await api.get('health', { action: 'getAll' });
-        console.log('API Response Data:', data); // Log the API response
-        if (data.success) {
-            this.displayHealth(data.data); // Pass the actual array of hives
-            this.updateHealthSummary(data.data);
+        const result = await api.get('hive', { action: 'getAll' });
+        console.log('Health data response:', result);
+        
+        if (result.success && Array.isArray(result.data)) {
+            console.log('Found', result.data.length, 'hives');
+            displayHealth(result.data);
         } else {
-            showToast('Failed to load health', 'error');
+            console.error('Invalid response:', result);
+            showToast('Failed to load health records: ' + (result.error || 'Invalid response format'), 'error');
         }
     } catch (error) {
-        showToast(error.message, 'error');
+        console.error('Error loading health data:', error);
+        showToast('Error: ' + error.message, 'error');
     }
 }
+
 // Display health records
-function displayHealth(data) {
+function displayHealth(hives) {
+    console.log('Displaying health data for hives:', hives);
     const container = document.getElementById('healthContainer');
-    if (!container) return;
+    if (!container) {
+        console.error('Health container not found');
+        return;
+    }
 
     let html = `
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Hive</th>
-                    <th>Date</th>
-                    <th>Colony Strength</th>
-                    <th>Disease Status</th>
-                    <th>Food Stores</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Hive Number</th>
+                        <th>Last Check Date</th>
+                        <th>Queen Present</th>
+                        <th>Colony Strength</th>
+                        <th>Disease Symptoms</th>
+                        <th>Pest Problems</th>
+                    </tr>
+                </thead>
+                <tbody>
     `;
 
-    data.forEach(item => {
+    if (hives.length === 0) {
         html += `
-            <tr data-id="${item.healthID}">
-                <td>${item.hiveName}</td>
-                <td>${formatDate(item.checkDate)}</td>
-                <td>
-                    <span class="status-${getHealthClass(item.colonyStrength)}">
-                        ${item.colonyStrength}
-                    </span>
-                </td>
-                <td>
-                    <span class="status-${getHealthClass(item.diseaseStatus)}">
-                        ${item.diseaseStatus}
-                    </span>
-                </td>
-                <td>
-                    <span class="status-${getHealthClass(item.foodStores)}">
-                        ${item.foodStores}
-                    </span>
-                </td>
-                <td>
-                    <button class="btn btn-sm btn-primary me-1" onclick="editHealth(${item.healthID})">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteHealth(${item.healthID})">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
+            <tr>
+                <td colspan="6" class="text-center">No hives found</td>
             </tr>
         `;
-    });
+    } else {
+        hives.forEach(hive => {
+            console.log('Processing hive:', hive);
+            const health = hive.lastHealth || {};
+            console.log('Hive health data:', health);
+            
+            html += `
+                <tr>
+                    <td>Hive #${hive.hiveNumber || 'N/A'}</td>
+                    <td>${health.checkDate ? formatDate(health.checkDate) : 'No check'}</td>
+                    <td>
+                        <span class="badge ${health.queenPresent == 1 ? 'bg-success' : 'bg-danger'}">
+                            ${health.queenPresent == 1 ? 'Yes' : 'No'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${getHealthStatusClass(health.colonyStrength)}">
+                            ${health.colonyStrength || 'N/A'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${health.diseaseSymptoms ? 'bg-warning' : 'bg-success'}">
+                            ${health.diseaseSymptoms || 'None'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${health.pestProblems ? 'bg-warning' : 'bg-success'}">
+                            ${health.pestProblems || 'None'}
+                        </span>
+                    </td>
+                </tr>
+            `;
+        });
+    }
 
-    html += '</tbody></table>';
+    html += '</tbody></table></div>';
     container.innerHTML = html;
 }
 
-// Update health summary
-function updateHealthSummary(data) {
-    const summaryContainer = document.getElementById('healthSummary');
-    if (!summaryContainer) return;
+// Helper function to get appropriate class for health status
+function getHealthStatusClass(status) {
+    if (!status) return 'bg-secondary';
+    
+    status = status.toLowerCase();
+    switch(status) {
+        case 'strong':
+            return 'bg-success';
+        case 'moderate':
+            return 'bg-warning';
+        case 'weak':
+            return 'bg-danger';
+        default:
+            return 'bg-secondary';
+    }
+}
 
-    const summary = {
-        total: data.length,
-        good: 0,
-        warning: 0,
-        critical: 0
-    };
+// View health history for a specific hive
+async function viewHealthHistory(hiveID) {
+    console.log('Viewing health history for hive:', hiveID);
+    try {
+        const result = await api.get('hive', { 
+            action: 'getHealthHistory',
+            hiveID: hiveID
+        });
+        
+        console.log('Health history response:', result);
+        
+        if (result.success && Array.isArray(result.data)) {
+            displayHealthHistory(result.data);
+        } else {
+            console.error('Invalid history response:', result);
+            showToast('Failed to load health history: ' + (result.error || 'Invalid response format'), 'error');
+        }
+    } catch (error) {
+        console.error('Error loading health history:', error);
+        showToast('Error: ' + error.message, 'error');
+    }
+}
 
-    data.forEach(item => {
-        const status = getOverallHealth(item);
-        summary[status.toLowerCase()]++;
-    });
-
+// Display health history in a modal
+function displayHealthHistory(history) {
+    console.log('Displaying health history:', history);
+    const modal = document.createElement('div');
+    modal.className = 'modal fade';
+    modal.id = 'healthHistoryModal';
+    
     let html = `
-        <div class="row">
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Hives</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${summary.total}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Health Check History</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Queen Present</th>
+                                    <th>Colony Strength</th>
+                                    <th>Disease Symptoms</th>
+                                    <th>Pest Problems</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+    `;
+    
+    if (history.length === 0) {
+        html += `
+            <tr>
+                <td colspan="6" class="text-center">No health records found</td>
+            </tr>
+        `;
+    } else {
+        history.forEach(record => {
+            html += `
+                <tr>
+                    <td>${formatDate(record.checkDate)}</td>
+                    <td>
+                        <span class="badge ${record.queenPresent == 1 ? 'bg-success' : 'bg-danger'}">
+                            ${record.queenPresent == 1 ? 'Yes' : 'No'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${getHealthStatusClass(record.colonyStrength)}">
+                            ${record.colonyStrength || 'N/A'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${record.diseaseSymptoms ? 'bg-warning' : 'bg-success'}">
+                            ${record.diseaseSymptoms || 'None'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${record.pestProblems ? 'bg-warning' : 'bg-success'}">
+                            ${record.pestProblems || 'None'}
+                        </span>
+                    </td>
+                    <td>${record.notes || ''}</td>
+                </tr>
+            `;
+        });
+    }
+    
+    html += `
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Healthy</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${summary.good}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-check-circle fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Warning</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${summary.warning}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Critical</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${summary.critical}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-times-circle fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     `;
-
-    summaryContainer.innerHTML = html;
-}
-
-// Handle update health record
-function handleUpdateHealth(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-        controller: 'health',
-        action: 'update',
-        healthID: formData.get('healthID'),
-        colonyStrength: formData.get('colonyStrength'),
-        diseaseStatus: formData.get('diseaseStatus'),
-        foodStores: formData.get('foodStores'),
-        notes: formData.get('notes')
-    };
-
-    fetch('api/health', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showToast('Health record updated successfully');
-            loadHealth();
-        } else {
-            showToast('Failed to update health record', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showToast('error', 'Failed to update health record');
+    
+    modal.innerHTML = html;
+    document.body.appendChild(modal);
+    
+    const modalInstance = new bootstrap.Modal(modal);
+    modalInstance.show();
+    
+    modal.addEventListener('hidden.bs.modal', function () {
+        document.body.removeChild(modal);
     });
-}
-
-// Delete health record
-function deleteHealth(healthID) {
-    if (confirm('Are you sure you want to delete this health record?')) {
-        fetch('api/handler.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `controller=health&action=delete&healthID=${healthID}`
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showToast('success', 'Health record deleted successfully');
-                loadHealth();
-            } else {
-                showToast('error', 'Error deleting health record: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showToast('error', 'Failed to delete health record');
-        });
-    }
-}
-
-// Edit health record
-function editHealth(healthID) {
-    const record = document.querySelector(`tr[data-id="${healthID}"]`);
-    if (!record) return;
-
-    const modal = document.getElementById('updateHealthModal');
-    if (!modal) return;
-
-    const form = modal.querySelector('form');
-    form.querySelector('[name="healthID"]').value = healthID;
-    form.querySelector('[name="colonyStrength"]').value = record.dataset.colonyStrength;
-    form.querySelector('[name="diseaseStatus"]').value = record.dataset.diseaseStatus;
-    form.querySelector('[name="foodStores"]').value = record.dataset.foodStores;
-    form.querySelector('[name="notes"]').value = record.dataset.notes || '';
-
-    $(modal).modal('show');
-}
-
-// Helper function to get health status class
-function getHealthClass(status) {
-    switch (status.toLowerCase()) {
-        case 'good':
-        case 'healthy':
-        case 'abundant':
-            return 'good';
-        case 'fair':
-        case 'warning':
-        case 'moderate':
-            return 'warning';
-        case 'poor':
-        case 'critical':
-        case 'low':
-            return 'danger';
-        default:
-            return 'warning';
-    }
-}
-
-// Get overall health status
-function getOverallHealth(record) {
-    const statuses = [
-        getHealthClass(record.colonyStrength),
-        getHealthClass(record.diseaseStatus),
-        getHealthClass(record.foodStores)
-    ];
-
-    if (statuses.includes('danger')) return 'Critical';
-    if (statuses.includes('warning')) return 'Warning';
-    return 'Good';
 }
 
 // Format date helper
 function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
 }

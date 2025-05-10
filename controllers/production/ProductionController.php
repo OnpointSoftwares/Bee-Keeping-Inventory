@@ -1,145 +1,148 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors",1);
-require_once(__DIR__ . '/../../model/production/honey.php');
-class ProductionController {
-    public $productionModel;
-    public $db;
-    
-    public function __construct($db) {
-        $this->db = $db;
-        $this->productionModel = new HoneyProduction($db); // Initialize the production model
+require_once __DIR__ . '/../BaseController.php';
+require_once __DIR__ . '/../../model/production/production.php';
+
+class ProductionController extends BaseController {
+    private $productionModel;
+
+    public function __construct() {
+        $this->productionModel = new Production();
     }
 
-    public function handleRequest($params = []) {
+    public function handleRequest($action, $params) {
+        // Log the incoming request for debugging
+        error_log("ProductionController: Action received: '$action', Params: " . json_encode($params));
+        
+        // Check if action is empty and try to get it from params
+        if (empty($action) && isset($params['action'])) {
+            $action = $params['action'];
+            error_log("ProductionController: Action was empty, using action from params: '$action'");
+        }
+        
+        switch ($action) {
+            case 'add':
+                error_log("ProductionController: Calling addProduction");
+                return $this->addProduction($params);
+            case 'update':
+                error_log("ProductionController: Calling updateProduction");
+                return $this->updateProduction($params);
+            case 'delete':
+                error_log("ProductionController: Calling deleteProduction");
+                return $this->deleteProduction($params);
+            case 'getAllProduction':
+                error_log("ProductionController: Calling getAllProduction");
+                return $this->getAllProduction();
+            case 'getReport':
+                error_log("ProductionController: Calling getProductionReport");
+                return $this->getProductionReport();
+            default:
+                error_log("ProductionController: Invalid action: '$action'");
+                return $this->error('Invalid action: ' . $action);
+        }
+    }
+
+    private function addProduction($params) {
+        // Log the parameters for debugging
+        error_log("Adding production with params: " . json_encode($params));
+        
+        $validation = $this->validateParams($params, ['hiveID', 'type', 'quantity', 'quality', 'harvestDate']);
+        if ($validation !== true) {
+            error_log("Validation failed: " . $validation);
+            return $this->error($validation);
+        }
+
         try {
-            $action = isset($params['action']) ? $params['action'] : '';
+            // Ensure numeric values are properly formatted
+            $params['quantity'] = floatval($params['quantity']);
+            $params['hiveID'] = intval($params['hiveID']);
             
-            switch($action) {
-                case 'add':
-                    return $this->addProduction($params);
-                    
-                case 'getHiveProduction':
-                    return $this->getHiveProduction($params['hiveID']);
-                    
-                case 'getReport':
-                    return $this->getReport($params);
-                    
-                case 'getTypeReport':
-                    return $this->getTypeReport($params);
-                    
-                case 'getAllProduction':
-                    return $this->getAllProduction();
-                    
-                default:
-                    return ['success' => false, 'error' => 'Invalid action specified'];
+            $result = $this->productionModel->addProduction($params);
+            if (!$result) {
+                error_log("Failed to add production record");
+                return $this->error("Failed to add production record");
             }
-        } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
-        }
-    }
-
-    public function addProduction($input) {
-        error_log('Adding production (controller): ' . json_encode($input));
-    
-        // Validate required fields
-        $requiredFields = ['hiveID', 'type', 'quantity'];
-        $validation = $this->validateRequiredFields($input, $requiredFields);
-        if (!$validation['success']) {
-            return $validation;
-        }
-    
-        try {
-            // Build production data
-            $productionData = [
-                'hiveID'       => $input['hiveID'],
-                'harvestDate'  => $input['harvestDate'] ?? null,
-                'quantity'     => $input['quantity'],
-                'type'         => $input['type'],
-                'quality'      => $input['quality'] ?? null,
-                'notes'        => $input['notes'] ?? null
-            ];
-    
-            error_log('Production data (controller-prepared): ' . json_encode($productionData));
-    
-            // Call model
-            $result = $this->productionModel->addProduction($productionData);
-            error_log('Result from addProduction (model): ' . json_encode($result));
-            return $result;
-    
-        } catch (Exception $e) {
-            error_log('Controller exception: ' . $e->getMessage());
-            return ['success' => false, 'error' => $e->getMessage()];
-        }
-    }
-    public function validateRequiredFields($data, $requiredFields) {
-        foreach ($requiredFields as $field) {
-            if (!isset($data[$field]) || empty($data[$field])) {
-                return ['success' => false, 'error' => "Missing required field: $field"];
-            }
-        }
-        return ['success' => true];
-    }
-        
-    public function getHiveProduction($hiveID) {
-        if (!isset($hiveID)) {
-            return ['success' => false, 'error' => 'Missing hive ID'];
-        }
-        return $this->productionModel->getHiveProduction($hiveID);
-    }
-
-    public function getReport($params) {
-        $startDate = $params['startDate'] ?? date('Y-m-d', strtotime('-1 year'));
-        $endDate = $params['endDate'] ?? date('Y-m-d');
-        
-        $report = $this->productionModel->getTotalProduction($startDate, $endDate);
-        
-        if ($report['success']) {
-            $total = array_reduce($report['data'], function($carry, $item) {
-                return $carry + $item['totalQuantity'];
-            }, 0);
             
-            return [
-                'success' => true,
-                'data' => [
-                    'report' => $report['data'],
-                    'totalProduction' => $total,
-                    'period' => [
-                        'start' => $startDate,
-                        'end' => $endDate
-                    ]
-                ]
-            ];
+            error_log("Production added successfully with ID: $result");
+            return $this->success(['id' => $result], 'Production record added successfully');
+        } catch (Exception $e) {
+            error_log("Exception in addProduction: " . $e->getMessage());
+            return $this->error($e->getMessage());
         }
-        return $report;
-    }
-    
-    public function getTypeReport($params) {
-        $startDate = $params['startDate'] ?? date('Y-m-d', strtotime('-1 year'));
-        $endDate = $params['endDate'] ?? date('Y-m-d');
-        
-        $report = $this->productionModel->getProductionByType($startDate, $endDate);
-        
-        if ($report['success']) {
-            return [
-                'success' => true,
-                'data' => [
-                    'report' => $report['data'],
-                    'period' => [
-                        'start' => $startDate,
-                        'end' => $endDate
-                    ]
-                ]
-            ];
-        }
-        return $report;
     }
 
-    public function getAllProduction() {
+    private function updateProduction($params) {
+        // Log the parameters for debugging
+        error_log("Updating production with params: " . json_encode($params));
+        
+        $validation = $this->validateParams($params, ['productionID', 'hiveID', 'type', 'quantity', 'quality', 'harvestDate']);
+        if ($validation !== true) {
+            error_log("Validation failed: " . $validation);
+            return $this->error($validation);
+        }
+
         try {
-            return $this->productionModel->getAllProduction();
+            // Ensure numeric values are properly formatted
+            $params['productionID'] = intval($params['productionID']);
+            $params['quantity'] = floatval($params['quantity']);
+            $params['hiveID'] = intval($params['hiveID']);
+            
+            $result = $this->productionModel->updateProduction($params);
+            if (!$result) {
+                error_log("Failed to update production record");
+                return $this->error("Failed to update production record");
+            }
+            
+            error_log("Production updated successfully");
+            return $this->success(null, 'Production record updated successfully');
         } catch (Exception $e) {
-            return ['success' => false, 'error' => $e->getMessage()];
+            error_log("Exception in updateProduction: " . $e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+    private function deleteProduction($params) {
+        // Log the parameters for debugging
+        error_log("Deleting production with params: " . json_encode($params));
+        
+        $validation = $this->validateParams($params, ['productionID']);
+        if ($validation !== true) {
+            error_log("Validation failed: " . $validation);
+            return $this->error($validation);
+        }
+
+        try {
+            $productionID = intval($params['productionID']);
+            $result = $this->productionModel->deleteProduction($productionID);
+            if (!$result) {
+                error_log("Failed to delete production record");
+                return $this->error("Failed to delete production record");
+            }
+            
+            error_log("Production deleted successfully");
+            return $this->success(null, 'Production record deleted successfully');
+        } catch (Exception $e) {
+            error_log("Exception in deleteProduction: " . $e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+    private function getAllProduction() {
+        try {
+            $data = $this->productionModel->getAllProduction();
+            return $this->success($data);
+        } catch (Exception $e) {
+            error_log("Exception in getAllProduction: " . $e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+    private function getProductionReport() {
+        try {
+            $data = $this->productionModel->getProductionReport();
+            return $this->success($data);
+        } catch (Exception $e) {
+            error_log("Exception in getProductionReport: " . $e->getMessage());
+            return $this->error($e->getMessage());
         }
     }
 }

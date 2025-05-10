@@ -1,10 +1,12 @@
 <?php
-require_once(__DIR__ . '/../../inc/config/db.php');
+require_once __DIR__ . '/../../config/database.php';
+
 class Hive {
     private $conn;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->connect();
     }
     
     public function addHive($data) {
@@ -25,81 +27,80 @@ class Hive {
             $stmt->bindParam(':queenAge', $queenAge);
             $stmt->bindParam(':notes', $notes);
             
-            if($stmt->execute()) {
-                return ['success' => true, 'message' => 'Hive added successfully'];
-            }
-            return ['success' => false, 'error' => 'Failed to add hive'];
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Error adding hive: " . $e->getMessage());
         }
     }
     
     public function updateHive($data) {
+        if (!isset($data['hiveID'])) {
+            throw new Exception("Hive ID is required");
+        }
+        
         $query = "UPDATE beehive 
-                 SET hiveNumber = :hiveNumber, 
-                     location = :location, 
-                     queenAge = :queenAge, 
-                     notes = :notes 
+                 SET hiveNumber = :hiveNumber,
+                     location = :location,
+                     dateEstablished = :dateEstablished,
+                     queenAge = :queenAge,
+                     notes = :notes,
+                     status = :status
                  WHERE hiveID = :hiveID";
+                 
+        try {
+            $stmt = $this->conn->prepare($query);
+            
+            $stmt->bindParam(':hiveID', $data['hiveID']);
+            $stmt->bindParam(':hiveNumber', $data['hiveNumber']);
+            $stmt->bindParam(':location', $data['location']);
+            $stmt->bindParam(':dateEstablished', $data['dateEstablished']);
+            $stmt->bindParam(':queenAge', $data['queenAge']);
+            $stmt->bindParam(':notes', $data['notes']);
+            $stmt->bindParam(':status', $data['status']);
+            
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Error updating hive: " . $e->getMessage());
+        }
+    }
+    
+    public function deleteHive($hiveID) {
+        $query = "DELETE FROM beehive WHERE hiveID = :hiveID";
         
         try {
-            $hiveID = $data['hiveID'];
-            $hiveNumber = $data['hiveNumber'];
-            $location = $data['location'];
-            $queenAge = $data['queenAge'] ?? null;
-            $notes = $data['notes'] ?? '';
-            
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':hiveID', $hiveID);
-            $stmt->bindParam(':hiveNumber', $hiveNumber);
-            $stmt->bindParam(':location', $location);
-            $stmt->bindParam(':queenAge', $queenAge);
-            $stmt->bindParam(':notes', $notes);
-            
-            if($stmt->execute()) {
-                return ['success' => true, 'message' => 'Hive updated successfully'];
-            }
-            return ['success' => false, 'error' => 'Failed to update hive'];
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Error deleting hive: " . $e->getMessage());
         }
     }
     
     public function getAllHives() {
-        $query = "SELECT * FROM beehive WHERE status = 'Active' ORDER BY hiveNumber";
+        $query = "SELECT * FROM beehive ORDER BY hiveNumber";
+        
         try {
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+        } catch (PDOException $e) {
+            throw new Exception("Error retrieving hives: " . $e->getMessage());
         }
     }
     
     public function getHive($hiveID) {
         $query = "SELECT * FROM beehive WHERE hiveID = :hiveID";
+        
         try {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':hiveID', $hiveID);
             $stmt->execute();
-            $hive = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $hive ? $hive : ['success' => false, 'error' => 'Hive not found'];
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
-        }
-    }
-    
-    public function deleteHive($hiveID) {
-        $query = "UPDATE beehive SET status = 'Inactive' WHERE hiveID = :hiveID";
-        try {
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':hiveID', $hiveID);
-            if($stmt->execute()) {
-                return ['success' => true, 'message' => 'Hive deleted successfully'];
-            }
-            return ['success' => false, 'error' => 'Failed to delete hive'];
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Error retrieving hive: " . $e->getMessage());
         }
     }
 }

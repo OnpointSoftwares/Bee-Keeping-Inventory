@@ -1,81 +1,59 @@
 <?php
-class HiveHealth {
+require_once __DIR__ . '/../../config/database.php';
+
+class HiveHealthManager {
     private $conn;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->connect();
     }
     
     public function addHealthCheck($data) {
         $query = "INSERT INTO hive_health (hiveID, checkDate, queenPresent, colonyStrength, diseaseSymptoms, pestProblems, notes) 
-                 VALUES (:hiveID, :checkDate, :queenPresent, :colonyStrength, :diseaseSymptoms, :pestProblems, :notes)";
+                  VALUES (:hiveID, :checkDate, :queenPresent, :colonyStrength, :diseaseSymptoms, :pestProblems, :notes)";
         
         try {
-            $hiveID = $data['hiveID'];
-            $checkDate = $data['checkDate'];
-            $queenPresent = $data['queenPresent'] ?? 0;
-            $colonyStrength = $data['colonyStrength'];
-            $diseaseSymptoms = $data['diseaseSymptoms'] ?? '';
-            $pestProblems = $data['pestProblems'] ?? '';
-            $notes = $data['notes'] ?? '';
-            
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':hiveID', $hiveID);
-            $stmt->bindParam(':checkDate', $checkDate);
-            $stmt->bindParam(':queenPresent', $queenPresent);
-            $stmt->bindParam(':colonyStrength', $colonyStrength);
-            $stmt->bindParam(':diseaseSymptoms', $diseaseSymptoms);
-            $stmt->bindParam(':pestProblems', $pestProblems);
-            $stmt->bindParam(':notes', $notes);
             
-            if($stmt->execute()) {
-                return ['success' => true, 'message' => 'Health check added successfully'];
-            }
-            return ['success' => false, 'error' => 'Failed to add health check'];
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+            $stmt->bindParam(':hiveID', $data['hiveID']);
+            $stmt->bindParam(':checkDate', $data['checkDate']);
+            $stmt->bindParam(':queenPresent', $data['queenPresent']);
+            $stmt->bindParam(':colonyStrength', $data['colonyStrength']);
+            $stmt->bindParam(':diseaseSymptoms', $data['diseaseSymptoms'] ?? '');
+            $stmt->bindParam(':pestProblems', $data['pestProblems'] ?? '');
+            $stmt->bindParam(':notes', $data['notes'] ?? '');
+            
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Error adding health check: " . $e->getMessage());
         }
     }
     
-    public function getHealthHistory($hiveID) {
+    public function getHealthChecks($hiveID) {
         $query = "SELECT * FROM hive_health WHERE hiveID = :hiveID ORDER BY checkDate DESC";
+        
         try {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':hiveID', $hiveID);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+        } catch (PDOException $e) {
+            throw new Exception("Error retrieving health checks: " . $e->getMessage());
         }
     }
     
     public function getLatestHealthCheck($hiveID) {
         $query = "SELECT * FROM hive_health WHERE hiveID = :hiveID ORDER BY checkDate DESC LIMIT 1";
+        
         try {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':hiveID', $hiveID);
             $stmt->execute();
-            $check = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $check ? $check : null;
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
-        }
-    }
-    
-    public function getHealthReport($startDate, $endDate) {
-        $query = "SELECT h.*, b.hiveNumber 
-                 FROM hive_health h 
-                 JOIN beehive b ON h.hiveID = b.hiveID 
-                 WHERE h.checkDate BETWEEN :startDate AND :endDate 
-                 ORDER BY h.checkDate DESC";
-        try {
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':startDate', $startDate);
-            $stmt->bindParam(':endDate', $endDate);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
-            return ['success' => false, 'error' => 'Database error: ' . $e->getMessage()];
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Error retrieving latest health check: " . $e->getMessage());
         }
     }
 }

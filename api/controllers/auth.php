@@ -9,8 +9,12 @@ class AuthController {
     }
 
     public function login($input) {
+        // Log the incoming login request for debugging
+        error_log('Login attempt: ' . json_encode($input));
+        
         // Validate input
         if (!isset($input['username']) || !isset($input['password'])) {
+            error_log('Login failed: Missing username or password');
             return ['success' => false, 'error' => 'Missing username or password'];
         }
 
@@ -21,11 +25,13 @@ class AuthController {
         $user = $this->userModel->getUserByUsername($username);
         
         if (!$user) {
-            return ['success' => false, 'error' => 'Invalid username or password ' . $username . ' ' . $password];
+            error_log('Login failed: User not found - ' . $username);
+            return ['success' => false, 'error' => 'Invalid username or password'];
         }
 
         if (!password_verify($password, $user['password'])) {
-            return ['success' => false, 'error' => 'Invalid username or password ' . $username . ' ' . $password];
+            error_log('Login failed: Invalid password for user - ' . $username);
+            return ['success' => false, 'error' => 'Invalid username or password'];
         }
 
         // Set session variables
@@ -34,7 +40,8 @@ class AuthController {
         $_SESSION['full_name'] = $user['full_name'];
         $_SESSION['loggedIn'] = true;
 
-        return ['success' => true];
+        error_log('Login successful: ' . $username);
+        return ['success' => true, 'message' => 'Login successful'];
     }
 
     public function register($input) {
@@ -78,20 +85,26 @@ class AuthController {
             return ['success' => false, 'error' => 'Failed to create user'];
         }
 
-        return ['success' => true];
+        error_log('Registration successful: ' . $username);
+        return ['success' => true, 'message' => 'Registration successful'];
     }
 
-    public function resetPassword() {
+    public function resetPassword($input) {
+        // Log the reset password request
+        error_log('Reset password attempt: ' . json_encode($input));
+        
         // Validate input
-        if (!isset($_POST['username']) || !isset($_POST['password'])) {
+        if (!isset($input['username']) || !isset($input['password'])) {
+            error_log('Reset password error: Missing required fields');
             return ['success' => false, 'error' => 'Missing required fields'];
         }
 
-        $username = trim($_POST['username']);
-        $password = $_POST['password'];
+        $username = trim($input['username']);
+        $password = $input['password'];
 
         // Check if user exists
         if (!$this->userModel->getUserByUsername($username)) {
+            error_log('Reset password error: User not found - ' . $username);
             return ['success' => false, 'error' => 'User not found'];
         }
 
@@ -102,9 +115,11 @@ class AuthController {
         $result = $this->userModel->updatePassword($username, $hashedPassword);
 
         if (!$result) {
+            error_log('Reset password error: Failed to update password for user - ' . $username);
             return ['success' => false, 'error' => 'Failed to update password'];
         }
 
-        return ['success' => true];
+        error_log('Reset password successful: ' . $username);
+        return ['success' => true, 'message' => 'Password reset successfully'];
     }
 }
