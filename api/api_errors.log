@@ -3779,3 +3779,933 @@ Stack trace:
     [action] => getHealthReport
 )
 
+[11-May-2025 04:55:02 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[11-May-2025 04:55:02 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[11-May-2025 04:55:02 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[11-May-2025 04:55:02 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[11-May-2025 04:55:02 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:02 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:02 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[11-May-2025 04:55:02 Europe/Berlin] Login successful: admin
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[11-May-2025 04:55:16 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[11-May-2025 04:55:16 Europe/Berlin] _POST: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] _GET: Array
+(
+)
+
+[11-May-2025 04:55:16 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[11-May-2025 04:55:16 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 13:35:08 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:35:08 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 13:35:08 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 13:35:08 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:35:08 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 13:35:08 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 13:35:08 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:35:08 Europe/Berlin] Login successful: admin
+[12-May-2025 13:58:20 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:58:20 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 13:58:20 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 13:58:20 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:58:20 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 13:58:20 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 13:58:20 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 13:58:20 Europe/Berlin] Login successful: admin
+[12-May-2025 13:59:14 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"admin"}
+[12-May-2025 13:59:14 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => admin
+)
+
+[12-May-2025 13:59:14 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => admin
+)
+
+[12-May-2025 13:59:14 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"admin"}
+[12-May-2025 13:59:14 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 13:59:14 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 13:59:14 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"admin"}
+[12-May-2025 13:59:14 Europe/Berlin] Login failed: Invalid password for user - admin
+[12-May-2025 14:12:42 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:12:42 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 14:12:42 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 14:12:42 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:12:42 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:42 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:42 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:12:42 Europe/Berlin] Login successful: admin
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[12-May-2025 14:12:59 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[12-May-2025 14:12:59 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:12:59 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[12-May-2025 14:12:59 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[12-May-2025 14:18:49 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:18:49 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 14:18:49 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[12-May-2025 14:18:49 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:18:49 Europe/Berlin] _POST: Array
+(
+)
+
+[12-May-2025 14:18:49 Europe/Berlin] _GET: Array
+(
+)
+
+[12-May-2025 14:18:49 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[12-May-2025 14:18:49 Europe/Berlin] Login successful: admin
+[13-May-2025 09:32:11 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:32:11 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:32:11 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:32:11 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:32:11 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:32:11 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:32:11 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:32:11 Europe/Berlin] Login successful: admin
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:36:04 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:36:04 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:36:04 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[13-May-2025 09:36:04 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:37:00 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:37:00 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:37:00 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:37:00 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:37:00 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:37:00 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:37:00 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:37:00 Europe/Berlin] Login successful: admin
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:39:34 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[13-May-2025 09:39:34 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:39:34 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[13-May-2025 09:39:34 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[13-May-2025 09:41:55 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:41:55 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:41:55 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[13-May-2025 09:41:55 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:41:55 Europe/Berlin] _POST: Array
+(
+)
+
+[13-May-2025 09:41:55 Europe/Berlin] _GET: Array
+(
+)
+
+[13-May-2025 09:41:55 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[13-May-2025 09:41:56 Europe/Berlin] Login successful: admin

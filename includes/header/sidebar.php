@@ -52,12 +52,15 @@
                 Settings
             </a>
         </li>
-    </ul>
-    <div class="sidebar-footer">
+        <li>
+        <div class="sidebar-footer">
         <a href="logout.php" class="btn btn-danger w-100">
             <i class="fas fa-sign-out-alt"></i> Logout
         </a>
     </div>
+</li>
+    </ul>
+    
 </nav>
 
 <!-- Mobile Toggle -->

@@ -25,7 +25,7 @@
                                     <th>Quantity (kg)</th>
                                     <th>Type</th>
                                     <th>Quality</th>
-                                    <th>Actions</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,14 +45,7 @@
                                     <td><?php echo htmlspecialchars($production['quantity']); ?></td>
                                     <td><?php echo htmlspecialchars($production['type']); ?></td>
                                     <td><?php echo htmlspecialchars($production['quality'] ?? 'N/A'); ?></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary edit-production-btn" data-production-id="<?php echo $production['productionID']; ?>">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger delete-production-btn" data-production-id="<?php echo $production['productionID']; ?>">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
+                                    
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

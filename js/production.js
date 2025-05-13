@@ -74,7 +74,7 @@ function displayProduction(data) {
                 <th>Date</th>
                 <th>Quantity (kg)</th>
                 <th>Quality</th>
-                <th>Actions</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -94,14 +94,7 @@ function displayProduction(data) {
                             ${item.quality}
                         </span>
                     </td>
-                    <td>
-                        <button class="btn btn-sm btn-warning me-1" onclick="editProduction(${item.productionID})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteProduction(${item.productionID})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+                   
                 </tr>
             `).join('')}
         </tbody>

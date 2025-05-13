@@ -91,17 +91,17 @@ async function loadInventoryReport() {
             displayInventoryReport(data.data);
             updateInventoryChart(data.data);
         } else {
-            console.error('Failed to load inventory report:', data);
-            reportContainer.innerHTML = '<div class="alert alert-warning">Failed to load inventory report. Please try again later.</div>';
-            showToast('Failed to load inventory report: ' + (data.error || 'Unknown error'), 'error');
+           // console.error('Failed to load inventory report:', data);
+            //reportContainer.innerHTML = '<div class="alert alert-warning">Failed to load inventory report. Please try again later.</div>';
+            //showToast('Failed to load inventory report: ' + (data.error || 'Unknown error'), 'error');
         }
     } catch (error) {
         console.error('Error in loadInventoryReport:', error);
-        const reportContainer = document.getElementById('inventoryReportContainer');
+        /*const reportContainer = document.getElementById('inventoryReportContainer');
         if (reportContainer) {
             reportContainer.innerHTML = '<div class="alert alert-danger">Error loading inventory report: ' + error.message + '</div>';
         }
-        showToast('Error loading inventory report: ' + error.message, 'error');
+        showToast('Error loading inventory report: ' + error.message, 'error');*/
     }
 }
 
