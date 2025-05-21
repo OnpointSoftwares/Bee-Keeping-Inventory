@@ -4709,3 +4709,203 @@ Stack trace:
 
 [13-May-2025 09:41:55 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
 [13-May-2025 09:41:56 Europe/Berlin] Login successful: admin
+[21-May-2025 13:57:31 Europe/Berlin] Raw POST data: {"action":"login","username":"admin","password":"123456"}
+[21-May-2025 13:57:31 Europe/Berlin] Decoded JSON data: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[21-May-2025 13:57:31 Europe/Berlin] API Request: POST /inventory-management-system/api/auth - Endpoint: auth - Raw Params: Array
+(
+    [action] => login
+    [username] => admin
+    [password] => 123456
+)
+
+[21-May-2025 13:57:31 Europe/Berlin] POST Data: {"action":"login","username":"admin","password":"123456"}
+[21-May-2025 13:57:31 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:57:31 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:57:31 Europe/Berlin] Login attempt: {"action":"login","username":"admin","password":"123456"}
+[21-May-2025 13:57:31 Europe/Berlin] Login successful: admin
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getProductionReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getProductionReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getProductionReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getProductionReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getEquipmentReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getEquipmentReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getEquipmentReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getEquipmentReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Raw POST data: {"controller":"reports","action":"getHealthReport"}
+[21-May-2025 13:59:19 Europe/Berlin] Decoded JSON data: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] API Request: POST /inventory-management-system/api/reports - Endpoint: reports - Raw Params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] POST Data: {"controller":"reports","action":"getHealthReport"}
+[21-May-2025 13:59:19 Europe/Berlin] _POST: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] _GET: Array
+(
+)
+
+[21-May-2025 13:59:19 Europe/Berlin] Reports endpoint called with action: getHealthReport
+[21-May-2025 13:59:19 Europe/Berlin] Reports params: Array
+(
+    [controller] => reports
+    [action] => getHealthReport
+)
+
